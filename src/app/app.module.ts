@@ -7,16 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginComponent } from './login/login.component';
 import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
-import { RelatorioComponent } from './relatorio/relatorio.component';
 import { AprovacoesComponent } from './aprovacoes/aprovacoes.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ColaboradoresComponent,
-    RelatorioComponent,
-    AprovacoesComponent
+    AprovacoesComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

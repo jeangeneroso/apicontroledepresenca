@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span>Controle de Presença dos colaboradores</span>
+  <span>Controle de Presença dos colaboradora</span>
+  <span class="spacer"></span>
+  <button mat-button (click)="deslogar()">Sair</button>
+</mat-toolbar>
+
+<div class="layout-container">
+  <aside class="menu-lateral">
+    <nav>
+      <a routerLink="/presenca">Presença</a>
+      <a routerLink="/colaboradores">Colaboradores</a>
+      <a routerLink="/aprovacoes">Aprovações</a>
+      <a routerLink="/relatorios">Relatórios</a>
+    </nav>
+  </aside>
+
+  <main class="conteudo-principal">
+    <router-outlet></router-outlet> 
+  </main>
+</div>

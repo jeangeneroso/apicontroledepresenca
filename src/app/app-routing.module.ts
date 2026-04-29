@@ -1,14 +1,41 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
+  // 1. ROTA INICIAL: Quando abrir o site, redireciona direto para o login
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
 
-  {path: '', pathMatch: 'full', redirectTo: 'presenca'},
+  // 2. ROTA DE LOGIN: Tela cheia, sem menu, sem toolbar
+  { path: 'login', component: LoginComponent },
 
+  // 3. ROTAS PROTEGIDAS: Só entram aqui se estiverem logados
   {
-    path: 'presenca',
-    loadChildren: () => import('./presenca/presenca.module').then(mod => mod.PresencaModule),
-  }
+    path: '',
+    component: LayoutComponent, // Este componente tem a Toolbar e o Menu Lateral
+    children: [
+      { 
+        path: 'presenca', 
+        loadChildren: () => import('./presenca/presenca.module').then(m => m.PresencaModule) 
+      },
+      { 
+        path: 'colaboradores', 
+        loadChildren: () => import('./colaboradores/colaboradores.module').then(m => m.ColaboradoresModule) 
+      },
+      { 
+        path: 'aprovacoes', 
+        loadChildren: () => import('./aprovacoes/aprovacoes.module').then(m => m.AprovacoesModule) 
+      },
+      { 
+        path: 'relatorios', 
+        loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatorioModule) 
+      }
+    ]
+  },
+
+  // 4. ROTA CORINGA: Se o usuário digitar bobagem na URL, volta pro login
+  { path: '**', redirectTo: 'login' }
 ];
 {
 

@@ -1,1 +1,50 @@
-<p>colaboradores works!</p>
+<table mat-table [dataSource]="colaboradores" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let colaborador"> {{ colaborador.id }} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nomeColaborador">
+    <th mat-header-cell *matHeaderCellDef> Nome do Colaborador </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.nomeColaborador}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="rgColaborador">
+    <th mat-header-cell *matHeaderCellDef> RG do Colaborador </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.rgColaborador}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="cpfColaborador">
+    <th mat-header-cell *matHeaderCellDef> CPF </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.cpfColaborador}} </td>
+  </ng-container>
+  
+    <!-- Symbol Column -->
+  <ng-container matColumnDef="chavePix">
+    <th mat-header-cell *matHeaderCellDef> Chave PIX </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.chavePix}} </td>
+  </ng-container>
+
+    <!-- Symbol Column -->
+  <ng-container matColumnDef="valorDiariaBase">
+    <th mat-header-cell *matHeaderCellDef> Valor Diaria </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiariaBase}} </td>
+  </ng-container>
+
+      <!-- Symbol Column -->
+  <ng-container matColumnDef="valorHoraExtraBase">
+    <th mat-header-cell *matHeaderCellDef> Valor Hora Extra </th>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtraBase}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
