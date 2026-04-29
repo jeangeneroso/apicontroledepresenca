@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table';
 
-import { PresencaRoutingModule } from './presenca-routing.module';
-import { PresencaComponent } from './presenca/presenca.component';
+import { ColaboradoresRoutingModule } from './colaboradores-routing.module';
+import { ColaboradoresComponent } from './colaboradores.component';
 
 
 @NgModule({
   declarations: [
-    PresencaComponent
+    ColaboradoresComponent
   ],
   imports: [
     CommonModule,
-    PresencaRoutingModule,
+    ColaboradoresRoutingModule,
     MatTableModule
   ]
 })
-export class PresencaModule { }
+export class ColaboradoresModule { }
