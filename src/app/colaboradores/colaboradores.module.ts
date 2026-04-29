@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableModule} from '@angular/material/table';
-
 import { ColaboradoresRoutingModule } from './colaboradores-routing.module';
 import { ColaboradoresComponent } from './colaboradores.component';
+import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
 
 
 @NgModule({
@@ -13,7 +12,8 @@ import { ColaboradoresComponent } from './colaboradores.component';
   imports: [
     CommonModule,
     ColaboradoresRoutingModule,
-    MatTableModule
+    AppMarterialModule
+
   ]
 })
 export class ColaboradoresModule { }
