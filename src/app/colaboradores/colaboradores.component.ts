@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Colaborador } from '../models/colaborador.model';
+import { ColaboradoresService } from '../services/colaboradores.service';
 
 @Component({
   selector: 'app-colaboradores',
@@ -11,18 +12,24 @@ import { Colaborador } from '../models/colaborador.model';
 export class ColaboradoresComponent implements OnInit {
 
   colaboradores: Colaborador [] = [];
-
   displayedColumns: string[] = [
-  'id', 
-  'nomeColaborador', 
-  'rgColaborador', 
-  'cpfColaborador', 
-  'chavePix', 
-  'valorDiariaBase', 
-  'valorHoraExtraBase'
-];
+    
+    'id',
+    'nomeColaborador',
+    'rgColaborador',
+    'cpfColaborador',
+    'chavePix',
+    'valorDiariaBase',
+    'valorHoraExtraBase'];
 
-  constructor () {}
+  colaboradoresService: ColaboradoresService;
+
+  constructor () {
+
+    this.colaboradoresService = new ColaboradoresService();
+    this.colaboradores = this.colaboradoresService.list();
+    console.log('Dados carregados com sucesso:', this.colaboradores);
+  }
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
@@ -38,8 +45,8 @@ export class ColaboradoresComponent implements OnInit {
 export class ColaboradoresComponent implements OnInit {
 
   // A tabela do Material Design precisa dessas variáveis
-  displayedColumns: string[] = ['id', 'nomeColaborador', 'valorDiaria', 'rodizio'];
-  dataSource: Colaborador[] = [];
+    colaboradores: Colaborador [] = [];
+    displayedColumns: string[] = [' id ',' nomeColaborador ', ' rgColaborador ', ' '];
 
   constructor() {
     // Aqui você só avisa quais serviços vai usar
