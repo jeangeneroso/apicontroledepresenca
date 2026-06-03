@@ -1,56 +1,23 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
 
 @Component({
-  selector: 'app-colaboradores',
+  selector: 'app-colaboradores', // <-- Corrigido aqui (adicionado 'selector')
   templateUrl: './colaboradores.component.html',
   styleUrls: ['./colaboradores.component.css']
-})
-
-export class ColaboradoresComponent implements OnInit {
-
-  colaboradores: Colaborador [] = [];
-  displayedColumns: string[] = [
-    
-    'id',
-    'nomeColaborador',
-    'rgColaborador',
-    'cpfColaborador',
-    'chavePix',
-    'valorDiariaBase',
-    'valorHoraExtraBase'];
-
-  colaboradoresService: ColaboradoresService;
-
-  constructor () {
-
-    this.colaboradoresService = new ColaboradoresService();
-    this.colaboradores = this.colaboradoresService.list();
-    console.log('Dados carregados com sucesso:', this.colaboradores);
-  }
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-}
-
-
-/* @Component({
-  selector: 'app-colaboradores',
-  templateUrl: './colaboradores.component.html'
 })
 export class ColaboradoresComponent implements OnInit {
 
   // A tabela do Material Design precisa dessas variáveis
-    colaboradores: Colaborador [] = [];
-    displayedColumns: string[] = [' id ',' nomeColaborador ', ' rgColaborador ', ' '];
+  colaboradores: Colaborador[] = [];
+  
+  // Dica: Remova os espaços em branco de dentro das strings do array abaixo 
+  // para bater certinho com as propriedades do seu modelo/colunas do HTML
+  displayedColumns: string[] = ['id', 'nomeColaborador', 'rgColaborador', 'acoes'];
 
-  constructor() {
-    // Aqui você só avisa quais serviços vai usar
-  }
+  // Injetando o serviço no construtor para poder usar na chamada do Java
+  constructor(private colaboradoresService: ColaboradoresService) {}
 
   ngOnInit(): void {
     // 1. O componente carregou!
@@ -59,7 +26,14 @@ export class ColaboradoresComponent implements OnInit {
   }
 
   carregarColaboradores() {
-    // Aqui entrará a chamada para o seu Service futuramente
     console.log("Buscando dados no Java...");
+    
+    /* Exemplo de como ficará sua chamada futuramente:
+      
+      this.colaboradoresService.listarTodos().subscribe({
+        next: (dados) => this.colaboradores = dados,
+        error: (err) => console.error("Erro ao buscar colaboradores", err)
+      });
+    */
   }
-} */
+}

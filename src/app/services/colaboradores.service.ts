@@ -12,13 +12,13 @@ export class ColaboradoresService {
 
     return [
 
-      { id:'1', 
-        nomeColaborador:'2', 
-        rgColaborador:'2',
-        cpfColaborador:'2',
-        chavePix:'4',
-        valorDiariaBase:'5',
-        valorHoraExtraBase:'6'}
+      { id:'', 
+        nomeColaborador:'', 
+        rgColaborador:'',
+        cpfColaborador:'',
+        chavePix:'',
+        valorDiariaBase:'',
+        valorHoraExtraBase:''}
         
     ];
 
