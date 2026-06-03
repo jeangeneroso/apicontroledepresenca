@@ -17,8 +17,8 @@ export class ColaboradoresService {
         rgColaborador:'',
         cpfColaborador:'',
         chavePix:'',
-        valorDiariaBase:'',
-        valorHoraExtraBase:''}
+        valorDiaria:'',
+        valorHoraExtra:''}
         
     ];
 

@@ -14,7 +14,15 @@ export class ColaboradoresComponent implements OnInit {
   
   // Dica: Remova os espaços em branco de dentro das strings do array abaixo 
   // para bater certinho com as propriedades do seu modelo/colunas do HTML
-  displayedColumns: string[] = ['id', 'nomeColaborador', 'rgColaborador', 'acoes'];
+  displayedColumns: string[] =  [
+    
+    'id',
+    'nomeColaborador',
+    'rgColaborador',
+    'cpfColaborador',
+    'chavePix',
+    'valorDiaria',
+    'valorHoraExtra'];
 
   // Injetando o serviço no construtor para poder usar na chamada do Java
   constructor(private colaboradoresService: ColaboradoresService) {}

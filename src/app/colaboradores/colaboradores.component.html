@@ -1,6 +1,6 @@
 <mat-card>
   <mat-toolbar>
-  <span> Lista de Colaboradores </span>
+  <span class="titulo-centralizado"> Lista de Colaboradores </span>
 </mat-toolbar>
   <table mat-table [dataSource]="colaboradores" class="mat-elevation-z8">
 
@@ -38,15 +38,15 @@
   </ng-container>
 
     <!-- Symbol Column -->
-  <ng-container matColumnDef="valorDiariaBase">
+  <ng-container matColumnDef="valorDiaria">
     <th mat-header-cell *matHeaderCellDef> Valor Diaria </th>
-    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiariaBase}} </td>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiaria}} </td>
   </ng-container>
 
       <!-- Symbol Column -->
-  <ng-container matColumnDef="valorHoraExtraBase">
+  <ng-container matColumnDef="valorHoraExtra">
     <th mat-header-cell *matHeaderCellDef> Valor Hora Extra </th>
-    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtraBase}} </td>
+    <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtra}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
