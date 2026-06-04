@@ -1,2 +1,2 @@
-export interface AprovacaoModel {
+export interface Aprovacao {
 }

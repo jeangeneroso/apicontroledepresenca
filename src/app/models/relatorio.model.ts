@@ -1,2 +1,2 @@
-export interface RelatorioModel {
+export interface Relatorio {
 }

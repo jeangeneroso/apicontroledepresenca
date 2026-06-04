@@ -1,4 +1,5 @@
-export interface LiderModel {
+export interface Lider {
+    
     id?: number | string;
     nomeLider: string;
     rgLider: string;

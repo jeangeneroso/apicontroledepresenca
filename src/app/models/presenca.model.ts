@@ -1,2 +1,2 @@
-export interface PresencaModel {
+export interface Presenca {
 }

@@ -1,2 +1,2 @@
-export interface LayoutModel {
+export interface Layout {
 }
