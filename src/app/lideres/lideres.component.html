@@ -1,1 +1,55 @@
-<p>lideres works!</p>
+<mat-card>
+  <mat-toolbar>
+  <span class="titulo-centralizado"> Lista de Lideres </span>
+</mat-toolbar>
+  <table mat-table [dataSource]="lideres" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let lider"> {{ lider.id }} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nomeLider">
+    <th mat-header-cell *matHeaderCellDef> Nome do Lider </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.nomeLider}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="rgLider">
+    <th mat-header-cell *matHeaderCellDef> RG do Colaborador </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.rgLider}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="cpfLider">
+    <th mat-header-cell *matHeaderCellDef> CPF do Colaborador </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.cpfLider}} </td>
+  </ng-container>
+  
+    <!-- Symbol Column -->
+  <ng-container matColumnDef="chavePix">
+    <th mat-header-cell *matHeaderCellDef> Chave PIX </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.chavePix}} </td>
+  </ng-container>
+
+    <!-- Symbol Column -->
+  <ng-container matColumnDef="valorDiaria">
+    <th mat-header-cell *matHeaderCellDef> Valor Diaria </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.valorDiaria}} </td>
+  </ng-container>
+
+      <!-- Symbol Column -->
+  <ng-container matColumnDef="valorHoraExtra">
+    <th mat-header-cell *matHeaderCellDef> Valor Hora Extra </th>
+    <td mat-cell *matCellDef="let lider"> {{lider.valorHoraExtra}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</mat-card>

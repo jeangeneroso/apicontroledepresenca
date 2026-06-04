@@ -1,0 +1,19 @@
+/* Faz o card ocupar toda a largura disponível e adiciona um espaçamento nas bordas */
+mat-card {
+  width: 100%;
+  max-width: 96%; /* Deixa uma pequena margem elegante nas laterais */
+  margin: 20px auto; /* Centraliza o card na tela e desgruda do menu superior */
+  box-sizing: border-box;
+}
+
+/* Faz a tabela esticar para ocupar 100% do tamanho do card */
+table {
+  width: 150%;
+}
+
+/* Opcional: Alinha o texto do cabeçalho da tabela para ficar bonito */
+th.mat-mdc-header-cell {
+  font-weight: bold;
+  color: #333;
+}
+

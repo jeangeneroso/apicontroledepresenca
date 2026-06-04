@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LideresRoutingModule } from './lideres-routing.module';
 import { LideresComponent } from './lideres.component';
+import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { LideresComponent } from './lideres.component';
   ],
   imports: [
     CommonModule,
-    LideresRoutingModule
+    LideresRoutingModule,
+    AppMarterialModule
   ]
 })
 export class LideresModule { }
