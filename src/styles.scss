@@ -1,15 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 
-// $custom-app-primary:mat-palette($mat-blue);
-// $custom-app-secundary:mat-palette($mat-indigo, A200, A400, 700);
-// $custom-app-warn:mat-palette($mat-red);
-
 $custom-app-primary: mat.define-palette(mat.$indigo-palette);
 $custom-app-secundary: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $custom-app-warn: mat.define-palette(mat.$red-palette);
-
-// $custome-theme: mat-light-theme($custom-app-primary, $custom-app-secundary, $custom-app-warn );
 
 $custom-theme: mat.define-light-theme((
   color: (
@@ -17,12 +11,62 @@ $custom-theme: mat.define-light-theme((
     accent: $custom-app-secundary,
     warn: $custom-app-warn,
   ),
-  typography: mat.define-typography-config(), // opcional
-  density: 0, // opcional
+  typography: mat.define-typography-config(), 
+  density: 0, 
 ));
 
-// @include angular-material-theme($custome-theme);
 @include mat.all-component-themes($custom-theme);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// ====================================================================
+// ADICIONE ESTE BLOCO ABAIXO PARA CORRIGIR O LAYOUT DO MENU E DA TABELA
+// ====================================================================
+
+/* Força o container do menu e conteúdo a ficarem lado a lado */
+.container-principal, div[style*="display: flex"] {
+  display: flex !important;
+  flex-direction: row !important; /* Lado a lado */
+  width: 100% !important;
+  min-height: calc(100vh - 64px);
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* Trava a largura do Menu Lateral */
+.menu-lateral {
+  width: 240px !important;
+  min-width: 240px !important; /* Impede que seja esmagado pela tabela */
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  align-self: stretch; /* Faz o fundo cinza ir até o final do container */
+  padding-top: 15px;
+}
+
+/* Organiza os links em lista */
+.menu-lateral nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.link-menu {
+  display: block;
+  padding: 15px 20px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.link-menu:hover {
+  background-color: #e0e0e0;
+}
+
+/* Espaço da direita (Onde o router-outlet renderiza a tabela) */
+.conteudo-principal {
+  flex: 1 !important; /* Ocupa todo o resto do espaço lateral */
+  min-width: 0 !important; /* ISSO IMPEDE A TABELA DE EMPURRAR O CONTEÚDO PARA BAIXO */
+  padding: 20px;
+  box-sizing: border-box;
+}
