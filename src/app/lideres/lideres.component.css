@@ -8,7 +8,7 @@ mat-card {
 
 /* Faz a tabela esticar para ocupar 100% do tamanho do card */
 table {
-  width: 150%;
+  width: 185%;
 }
 
 /* Opcional: Alinha o texto do cabeçalho da tabela para ficar bonito */
