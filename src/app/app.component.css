@@ -1,0 +1,25 @@
+/* No app.component.css (ou onde está a estrutura do menu) */
+
+/* Se você manteve a div inline com style="display: flex; gap: 15px;" */
+div[style*="display: flex"] {
+  display: flex !important;
+  flex-direction: row; /* Garante que fiquem lado a lado */
+  width: 100%;
+  align-items: flex-start; /* Alinha o menu e o conteúdo no topo */
+  min-height: calc(100vh - 64px);
+}
+
+.menu-lateral {
+  width: 240px;
+  min-width: 240px; /* Impede o menu de espremer se a tabela for grande */
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+.conteudo-principal {
+  flex: 1; /* DIZ PARA O ANGULAR: 'Ocupe todo o resto da tela aqui' */
+  min-width: 0; /* Previne que tabelas grandes quebrem o flexbox */
+  padding: 20px;
+  box-sizing: border-box;
+}

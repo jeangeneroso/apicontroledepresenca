@@ -1,16 +1,18 @@
 <mat-toolbar color="primary">
-  <span> Controle de Presença </span>
+  <span> Controle de Presença dos Colaboradores da GN </span>
   <span class="spacer"></span>
   <button mat-button (click)="deslogar()"> Sair </button>
 </mat-toolbar>
 
-<div style="display: flex; gap: 15px;">
+<div class="container-principal">
+  
   <aside class="menu-lateral">
     <nav>
-      <a routerLink="/presenca" class="link-menu"> Presença </a>
+      <a routerLink="/presenca" class="link-menu"> Registro de Diarias </a>
       <a routerLink="/colaboradores" class="link-menu"> Colaboradores </a>
       <a routerLink="/lideres" class="link-menu"> Lideres </a>
       <a routerLink="/aprovacoes" class="link-menu"> Aprovações </a>
+       <a routerLink="/diarias" class="link-menu"> Diarias Registradas </a>
       <a routerLink="/relatorios" class="link-menu"> Relatórios</a>
     </nav>
   </aside>
@@ -18,4 +20,5 @@
   <main class="conteudo-principal">
     <router-outlet></router-outlet> 
   </main>
+
 </div>

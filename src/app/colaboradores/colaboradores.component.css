@@ -1,19 +1,28 @@
-/* Faz o card ocupar toda a largura disponível e adiciona um espaçamento nas bordas */
+/* No colaboradores.component.css */
+
 mat-card {
+  display: block; /* Garante o comportamento correto do card dentro do flex */
   width: 100%;
-  max-width: 96%; /* Deixa uma pequena margem elegante nas laterais */
-  margin: 20px auto; /* Centraliza o card na tela e desgruda do menu superior */
+  max-width: 100%;
+  margin-bottom: 20px;
   box-sizing: border-box;
+  overflow-x: auto; /* Se a tela for pequena, adiciona barra de rolagem SÓ no card, sem quebrar o menu */
 }
 
 /* Faz a tabela esticar para ocupar 100% do tamanho do card */
 table {
-  width: 150%;
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent !important; /* Remove sombras duplicadas se houver */
 }
 
-/* Opcional: Alinha o texto do cabeçalho da tabela para ficar bonito */
+/* Alinha o texto do cabeçalho da tabela para ficar bonito */
 th.mat-mdc-header-cell {
   font-weight: bold;
   color: #333;
+  font-size: 14px;
 }
 
+td.mat-mdc-cell {
+  padding: 12px 4px; 
+}

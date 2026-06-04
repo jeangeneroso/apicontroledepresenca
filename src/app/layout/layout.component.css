@@ -1,7 +1,48 @@
-.spacer {
-  flex: 1 1 auto;
+/* Removido o comentário quebrado com tags HTML que travava o CSS */
+
+/* Garante que o container alinhe horizontalmente e ocupe a tela */
+div[style*="display: flex"], .layout-container {
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: calc(100vh - 64px); 
+  align-items: stretch;
+  width: 100%;
 }
-.layout-container {
+
+/* Menu Lateral */
+.menu-lateral {
+  width: 240px;
+  min-width: 240px; /* Garante que o menu não esmague */
+  background-color: #f5f5f5; 
+  border-right: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+/* Container de navegação em coluna */
+.menu-lateral nav {
   display: flex;
-  height: calc(100vh - 64px);
+  flex-direction: column; 
+}
+
+/* Links do menu */
+.link-menu {
+  display: block;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.link-menu:hover {
+  background-color: #e0e0e0;
+  color: #1976d2; 
+}
+
+/* Conteúdo principal ao lado do menu */
+.conteudo-principal {
+  flex: 1 !important; /* Força a tabela a ir para o lado */
+  min-width: 0; /* Impede tabelas grandes de empurrarem o menu para baixo */
+  padding: 20px;
+  box-sizing: border-box;
 }
