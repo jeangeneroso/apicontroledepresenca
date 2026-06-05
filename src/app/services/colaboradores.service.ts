@@ -7,11 +7,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ColaboradoresService {
 
+  private readonly API = '/assets/colaboradores.json'
+
   constructor( private httpClient: HttpClient) { }
 
-  list (): Colaborador [] {
+  // list (): Colaborador [] {
 
-    return [
+    list () {
+
+ /*    return [
 
       { id:'', 
         nomeColaborador:'', 
@@ -21,7 +25,9 @@ export class ColaboradoresService {
         valorDiaria:'',
         valorHoraExtra:''}
         
-    ];
+    ]; */
+    
+    return this.httpClient.get <Colaborador[]>(this.API);
 
   }
 

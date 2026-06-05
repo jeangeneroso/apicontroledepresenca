@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-colaboradores', // <-- Corrigido aqui (adicionado 'selector')
@@ -10,7 +11,13 @@ import { ColaboradoresService } from '../services/colaboradores.service';
 export class ColaboradoresComponent implements OnInit {
 
   // A tabela do Material Design precisa dessas variáveis
-  colaboradores: Colaborador[] = [];
+  /* colaboradores: Colaborador[] = []; */
+
+  colaboradores: Observable<Colaborador[]>;
+
+
+  // Dica: Remova os espaços em branco de dentro das strings do array abaixo 
+  // para bater certinho com as propriedades do seu modelo/colunas do HTML
   
   // Dica: Remova os espaços em branco de dentro das strings do array abaixo 
   // para bater certinho com as propriedades do seu modelo/colunas do HTML
@@ -25,14 +32,21 @@ export class ColaboradoresComponent implements OnInit {
     'valorHoraExtra'];
 
   // Injetando o serviço no construtor para poder usar na chamada do Java
-  constructor(private colaboradoresService: ColaboradoresService) {}
+  constructor(private colaboradoresService: ColaboradoresService) {
 
-  ngOnInit(): void {
+    this.colaboradores = this.colaboradoresService.list();
+  }
+
+   ngOnInit(): void {
+
+  }
+
+/*   ngOnInit(): void {
     // 1. O componente carregou!
     // 2. Agora pedimos os dados para o Java
     this.carregarColaboradores();
   }
-
+ */
   carregarColaboradores() {
     console.log("Buscando dados no Java...");
     
