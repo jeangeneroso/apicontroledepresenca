@@ -1,0 +1,14 @@
+[
+
+    {
+
+        "id":"1", 
+        "nomeColaborador":"Teste RPM", 
+        "rgColaborador":"1234567",
+        "cpfColaborador":"123456",
+        "chavePix":"teste@teste.com.br",
+        "valorDiaria":"130",
+        "valorHoraExtra":"12"
+
+    }
+]
