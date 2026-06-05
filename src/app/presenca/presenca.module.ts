@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableModule} from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms'; // <-- ADICIONE ESTE IMPORT
+import { MatTableModule } from '@angular/material/table';
 
 import { PresencaRoutingModule } from './presenca-routing.module';
-import { PresencaComponent } from './presenca/presenca.component';
-
+import { PresencaComponent } from './presenca.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { PresencaComponent } from './presenca/presenca.component';
   imports: [
     CommonModule,
     PresencaRoutingModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule // <-- ADICIONE AQUI TAMBÉM
   ]
 })
 export class PresencaModule { }

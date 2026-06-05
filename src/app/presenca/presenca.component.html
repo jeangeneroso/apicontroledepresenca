@@ -1,0 +1,64 @@
+<div class="container-presenca">
+  
+  <div class="abas-nav">
+    <button 
+      type="button" 
+      [class.ativa]="abaAtiva === 'colaborador'" 
+      (click)="trocarAba('colaborador')">
+      Presença Colaborador
+    </button>
+    
+    <button 
+      type="button" 
+      [class.ativa]="abaAtiva === 'lider'" 
+      (click)="trocarAba('lider')">
+      Presença Líder
+    </button>
+  </div>
+
+  <hr>
+
+  <form *ngIf="abaAtiva === 'colaborador'" [formGroup]="formColaborador" (ngSubmit)="salvarColaborador()">
+    <h3>Registro de Presença - Colaborador</h3>
+    
+    <div class="campo">
+      <label for="dataColab">Data:</label>
+      <input type="date" id="dataColab" formControlName="data">
+      <small *ngIf="formColaborador.get('data')?.invalid && formColaborador.get('data')?.touched" class="erro">
+        A data é obrigatória.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="justificativa">Justificativa / Motivo:</label>
+      <textarea id="justificativa" formControlName="justificativa" rows="3"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="formColaborador.invalid">Enviar Presença Colaborador</button>
+  </form>
+
+  <form *ngIf="abaAtiva === 'lider'" [formGroup]="formLider" (ngSubmit)="salvarLider()">
+    <h3>Registro de Presença - Líder</h3>
+    
+    <div class="campo">
+      <label for="dataLider">Data:</label>
+      <input type="date" id="dataLider" formControlName="data">
+      <small *ngIf="formLider.get('data')?.invalid && formLider.get('data')?.touched" class="erro">
+        A data é obrigatória.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="setor">Setor do Líder:</label>
+      <input type="text" id="setor" formControlName="setor" placeholder="Ex: TI, RH...">
+      <small *ngIf="formLider.get('setor')?.invalid && formLider.get('setor')?.touched" class="erro">
+        O setor é obrigatório.
+      </small>
+    </div>
+
+    <div class="campo">
+      <label for="observacao">Observações Gerais:</label>
+      <textarea id="observacao" formControlName="observacao" rows="3"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="formLider.invalid">Enviar Pres

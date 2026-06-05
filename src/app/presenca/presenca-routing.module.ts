@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PresencaComponent } from './presenca/presenca.component';
+import { PresencaComponent } from './presenca.component';
 
 const routes: Routes = [
   {path: '', component : PresencaComponent }

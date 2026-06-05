@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Colaborador } from '../models/colaborador.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColaboradoresService {
 
-  constructor() { }
+  constructor( private httpClient: HttpClient) { }
 
   list (): Colaborador [] {
 

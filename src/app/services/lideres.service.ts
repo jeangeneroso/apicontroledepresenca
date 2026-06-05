@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Lider } from '../models/lider.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Lider } from '../models/lider.model';
 
 export class LideresService {
 
-  constructor() { }
+  constructor( private httpCient:HttpClient ) { }
 
   list(): Lider[] {
 
