@@ -32,4 +32,13 @@ export class LideresComponent {
     console.log("Buscando dados no Java...");
   }
 
+   
+    /* Exemplo de como ficará sua chamada futuramente:
+      
+      this.colaboradoresService.listarTodos().subscribe({
+        next: (dados) => this.colaboradores = dados,
+        error: (err) => console.error("Erro ao buscar colaboradores", err)
+      });
+    */
+
 }
