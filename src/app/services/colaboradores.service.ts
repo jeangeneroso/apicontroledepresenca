@@ -31,7 +31,7 @@ export class ColaboradoresService {
     return this.httpClient.get<Colaborador[]>(this.API)
       .pipe(
         first(),
-        delay(5000),
+        // delay(5000),
         tap(colaboradores => console.log(colaboradores))
       );
 

@@ -28,27 +28,35 @@ export class ColaboradoresComponent implements OnInit {
   // Injetando os serviços corretamente no construtor
   constructor(
     private colaboradoresService: ColaboradoresService,
-    public dialog: MatDialog // <-- Mudado de 'data' para 'dialog'
+    public dialog: MatDialog
   ) {
     this.colaboradores$ = this.colaboradoresService.list().pipe(
       catchError(error => {
-        // Quando der erro, chama a função para abrir o modal passando a mensagem
-        this.openError('Erro ao carregar colaboradores da base de dados.');
-        return of([]);
+        console.error('O Java deu erro! Detalhes:', error);
+        
+        // O setTimeout joga a abertura do dialog para o próximo ciclo de renderização,
+        // evitando que o Angular trave a abertura do modal.
+        setTimeout(() => {
+          this.openError('Erro ao carregar colaboradores da base de dados.');
+        }, 0);
+
+        return of([]); // Retorna lista vazia para sumir com o Spinner de carregamento
       })
     );
   }
 
   // Método corrigido para abrir o diálogo correto
   openError(errorMsg: string) {
-    this.dialog.open(ErrorDialogComponent, { // <-- Usando o componente correto aqui
-      data: errorMsg // <-- Passando a mensagem de erro que veio do catchError
+    this.dialog.open(ErrorDialogComponent, { 
+      data: errorMsg
     });
   }
 
   ngOnInit(): void {
-    // Caso queira usar a função do Java futuramente:
-    // this.carregarColaboradores();
+    // FORCE ESTE TESTE:
+    setTimeout(() => {
+      this.openError('O sistema de módulos funcionou perfeitamente!');
+    }, 1000);
   }
 
   carregarColaboradores() {

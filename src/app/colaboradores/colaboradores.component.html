@@ -6,46 +6,42 @@
   <div *ngIf="colaboradores$ | async as colaboradores; else loading">
     <table mat-table [dataSource]="colaboradores" class="mat-elevation-z8">
 
-      <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let colaborador"> {{ colaborador.id }} </td>
+        <td mat-cell *matCellDef="let colaborador"> 
+          <mat-icon>home</mat-icon> 
+          {{ colaborador.id }} 
+        </td>
       </ng-container>
 
-      <!-- Name Column -->
       <ng-container matColumnDef="nomeColaborador">
         <th mat-header-cell *matHeaderCellDef> Nome do Colaborador </th>
-        <td mat-cell *matCellDef="let colaborador"> {{colaborador.nomeColaborador}} </td>
+        <td mat-cell *matCellDef="let colaborador"> 
+          <mat-icon>person</mat-icon> 
+          {{colaborador.nomeColaborador}} 
+        </td>
       </ng-container>
 
-      <!-- Weight Column -->
       <ng-container matColumnDef="rgColaborador">
         <th mat-header-cell *matHeaderCellDef> RG do Colaborador </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.rgColaborador}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="cpfColaborador">
         <th mat-header-cell *matHeaderCellDef> CPF do Colaborador </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.cpfColaborador}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="chavePix">
         <th mat-header-cell *matHeaderCellDef> Chave PIX </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.chavePix}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="valorDiaria">
         <th mat-header-cell *matHeaderCellDef> Valor Diaria </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiaria}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="valorHoraExtra">
         <th mat-header-cell *matHeaderCellDef> Valor Hora Extra </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtra}} </td>
@@ -55,9 +51,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
+  
   <ng-template #loading>
-    <div class=" loagind-spinner">
-      <mat-spinner> </mat-spinner>
+    <div class="loagind-spinner">
+      <mat-spinner></mat-spinner>
     </div>
   </ng-template>
 </mat-card>
