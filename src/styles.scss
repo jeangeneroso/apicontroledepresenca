@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 
+// ====================================================================
+// CORREÇÃO AQUI: O .core() inclui os estilos base de ícones e fontes do Material
+// ====================================================================
+@include mat.core(); 
+
 $custom-app-primary: mat.define-palette(mat.$indigo-palette);
 $custom-app-secundary: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $custom-app-warn: mat.define-palette(mat.$red-palette);
@@ -20,8 +25,18 @@ $custom-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
 // ====================================================================
-// ADICIONE ESTE BLOCO ABAIXO PARA CORRIGIR O LAYOUT DO MENU E DA TABELA
+// COMPLEMENTO DA CORREÇÃO PARA O MAT-ICON
+// ====================================================================
+/* Garante que a tag mat-icon assuma a fonte do Google que está no index.html */
+mat-icon {
+  font-family: 'Material Icons' !important;
+}
+
+
+// ====================================================================
+// SEUS ESTILOS DO MENU E DA TABELA (MANTIDOS EXATAMENTE IGUAIS)
 // ====================================================================
 
 /* Força o container do menu e conteúdo a ficarem lado a lado */
@@ -69,4 +84,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   min-width: 0 !important; /* ISSO IMPEDE A TABELA DE EMPURRAR O CONTEÚDO PARA BAIXO */
   padding: 20px;
   box-sizing: border-box;
+}
+
+.material-icons, 
+mat-icon {
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Altura padrão do ícone */
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
 }
