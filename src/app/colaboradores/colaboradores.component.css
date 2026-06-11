@@ -26,3 +26,11 @@ th.mat-mdc-header-cell {
 td.mat-mdc-cell {
   padding: 12px 4px; 
 }
+
+.loagind-spinner{
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
