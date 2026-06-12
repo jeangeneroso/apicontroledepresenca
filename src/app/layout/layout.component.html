@@ -1,24 +1,27 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="toolbar-principal">
   <span> Controle de Diarias dos Colaboradores da GN </span>
+
   <span class="spacer"></span>
-  <button mat-button (click)="deslogar()"> Sair </button>
+
+  <button mat-button (click)="deslogar()" class="botao-sair"> Sair </button>
 </mat-toolbar>
 
 <div class="container-principal">
-  
+
   <aside class="menu-lateral">
     <nav>
-      <a routerLink="/presenca" class="link-menu"> Registro de Diarias </a>
-      <a routerLink="/colaboradores" class="link-menu"> Colaboradores </a>
-      <a routerLink="/lideres" class="link-menu"> Lideres </a>
-      <a routerLink="/aprovacoes" class="link-menu"> Aprovações </a>
-       <a routerLink="/diarias" class="link-menu"> Diarias Registradas </a>
-      <a routerLink="/relatorios" class="link-menu"> Relatórios</a>
+      <a routerLink="/presenca" class="link-menu"> Registro de Diárias </a>
+      <a routerLink="/colaboradores" class="link-menu"> Gestão de Colaboradores </a>
+      <a routerLink="/lideres" class="link-menu"> Gestão de Líderes </a>
+      <a routerLink="/aprovacoes" class="link-menu"> Aprovações das Diárias </a>
+      <a routerLink="/diarias" class="link-menu"> Diárias Registradas </a>
+      <a routerLink="/operacoes" class="link-menu"> Operações </a>
+      <a routerLink="/relatorios" class="link-menu"> Relatórios </a>
     </nav>
   </aside>
 
   <main class="conteudo-principal">
-    <router-outlet></router-outlet> 
+    <router-outlet></router-outlet>
   </main>
 
 </div>

@@ -46,3 +46,22 @@ div[style*="display: flex"], .layout-container {
   padding: 20px;
   box-sizing: border-box;
 }
+
+/* Complemento para a barra superior */
+.toolbar-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px; /* Dá um recuo elegante nas duas pontas da barra */
+  height: 48px; /* Altura padrão que casa com o seu calc(100vh - 64px) */
+}
+
+.spacer {
+  flex: 1 1 auto; /* Empurra o botão Sair para o final */
+}
+
+.botao-sair {
+  font-weight: bold;
+  /* Se quiser afastar um pouquinho mais da borda da tela: */
+  margin-right: 8px; 
+}
