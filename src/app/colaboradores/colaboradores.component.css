@@ -34,3 +34,18 @@ td.mat-mdc-cell {
   align-items: center;
   justify-content: center;
 }
+
+/* Garante que o texto e o ícone fiquem na mesma linha e centralizados */
+.header-conteudo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* Espaçamento ideal entre o texto e o ícone */
+  white-space: nowrap; /* Evita que o texto do título quebre linha se a coluna estreitar */
+}
+
+/* Opcional: Ajusta ligeiramente o tamanho do ícone para não estourar a altura da linha */
+.header-conteudo mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}

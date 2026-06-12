@@ -34,13 +34,11 @@ export class ColaboradoresComponent implements OnInit {
       catchError(error => {
         console.error('O Java deu erro! Detalhes:', error);
         
-        // O setTimeout joga a abertura do dialog para o próximo ciclo de renderização,
-        // evitando que o Angular trave a abertura do modal.
         setTimeout(() => {
           this.openError('Erro ao carregar colaboradores da base de dados.');
         }, 0);
 
-        return of([]); // Retorna lista vazia para sumir com o Spinner de carregamento
+        return of([]);
       })
     );
   }
@@ -53,12 +51,15 @@ export class ColaboradoresComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+ /*  ngOnInit(): void {
     // FORCE ESTE TESTE:
     setTimeout(() => {
       this.openError('O sistema de módulos funcionou perfeitamente!');
     }, 1000);
   }
-
+ */
   carregarColaboradores() {
     console.log("Buscando dados no Java...");
   }

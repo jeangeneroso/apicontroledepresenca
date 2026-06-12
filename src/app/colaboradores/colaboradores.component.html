@@ -1,6 +1,6 @@
 <mat-card>
   <mat-toolbar>
-    <span class="titulo-centralizado"> Lista de Colaboradores </span>
+    <span class="titulo-centralizado"> Gestão de Colaboradores </span>
   </mat-toolbar>
 
   <div *ngIf="colaboradores$ | async as colaboradores; else loading">
@@ -16,20 +16,25 @@
       </ng-container>
 
       <ng-container matColumnDef="nomeColaborador">
-        <th mat-header-cell *matHeaderCellDef> Nome do Colaborador </th>
-        <td mat-cell *matCellDef="let colaborador">
+        <th mat-header-cell *matHeaderCellDef> Nome do Colaborador
           <mat-icon>person</mat-icon>
+        </th>
+        <td mat-cell *matCellDef="let colaborador">
           {{colaborador.nomeColaborador}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="rgColaborador">
-        <th mat-header-cell *matHeaderCellDef> RG do Colaborador </th>
+        <th mat-header-cell *matHeaderCellDef> RG do Colaborador
+          <mat-icon>pin</mat-icon>
+        </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.rgColaborador}} </td>
       </ng-container>
 
       <ng-container matColumnDef="cpfColaborador">
-        <th mat-header-cell *matHeaderCellDef> CPF do Colaborador </th>
+        <th mat-header-cell *matHeaderCellDef> CPF do Colaborador
+          <mat-icon>subtitles</mat-icon>
+        </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.cpfColaborador}} </td>
       </ng-container>
 
@@ -41,7 +46,7 @@
       </ng-container>
 
       <ng-container matColumnDef="valorDiaria">
-        <th mat-header-cell *matHeaderCellDef> Valor Diaria 
+        <th mat-header-cell *matHeaderCellDef> Valor Diaria
           <mat-icon>money</mat-icon>
         </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiaria}} </td>
@@ -49,7 +54,8 @@
 
       <ng-container matColumnDef="valorHoraExtra">
         <th mat-header-cell *matHeaderCellDef> Valor Hora Extra
-          <mat-icon>money</mat-icon> </th>
+          <mat-icon>money</mat-icon>
+        </th>
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtra}} </td>
       </ng-container>
 
