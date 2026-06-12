@@ -30,6 +30,23 @@
     </div>
 
     <div class="campo">
+      <label for="dataColab">Nome do Colaborador</label>
+      <input type="date" id="dataColab" formControlName="data">
+      <small *ngIf="formColaborador.get('data')?.invalid && formColaborador.get('data')?.touched" class="erro">
+        A data é obrigatória.
+      </small>
+    </div>
+
+       <div class="campo">
+      <label for="dataColab">Operacao</label>
+      <input type="date" id="dataColab" formControlName="data">
+      <small *ngIf="formColaborador.get('data')?.invalid && formColaborador.get('data')?.touched" class="erro">
+        A data é obrigatória.
+      </small>
+    </div>
+
+
+    <div class="campo">
       <label for="justificativa">Justificativa / Motivo:</label>
       <textarea id="justificativa" formControlName="justificativa" rows="3"></textarea>
     </div>
