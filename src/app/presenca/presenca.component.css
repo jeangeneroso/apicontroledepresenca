@@ -1,0 +1,9 @@
+.abas-nav {
+  display: inline-block; /* Garante que fiquem lado a lado se necessário */
+  margin-right: 15px; /* Cria o espaçamento na direita */
+}
+
+/* Remove a margem da última aba para não sobrar espaço no final */
+.abas-nav:last-child {
+  margin-right: 0;
+}

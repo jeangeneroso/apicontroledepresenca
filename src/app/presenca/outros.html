@@ -1,0 +1,53 @@
+Usando uma biblioteca de componentes (Ex: Angular Material)
+
+<mat-form-field appearance="fill">
+  <mat-label>Operação</mat-label>
+  <mat-select formControlName="operacao">
+    <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
+      {{ op.nome }}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="formColaborador.get('operacao')?.invalid">
+    A operação é obrigatória.
+  </mat-error>
+</mat-form-field>
+
+Campo de Texto com Sugestões (Datalist)
+
+<div class="campo">
+  <label for="operacaoInput">Operação:</label>
+  <input 
+    list="operacoes" 
+    id="operacaoInput" 
+    formControlName="operacao" 
+    placeholder="Digite para buscar...">
+  
+  <datalist id="operacoes">
+    <option *ngFor="let op of listaDeOperacoes" [value]="op.nome"></option>
+  </datalist>
+
+  <small *ngIf="formColaborador.get('operacao')?.invalid && formColaborador.get('operacao')?.touched" class="erro">
+    A operação é obrigatória.
+  </small>
+</div>
+
+
+Botões de Opção (Radio Buttons)
+
+<div class="campo">
+  <label>Operação:</label>
+  <div class="opcoes-radio">
+    <div *ngFor="let op of listaDeOperacoes">
+      <input 
+        type="radio" 
+        [id]="'op-' + op.id" 
+        [value]="op" 
+        formControlName="operacao">
+      <label [for]="'op-' + op.id">{{ op.nome }}</label>
+    </div>
+  </div>
+
+  <small *ngIf="formColaborador.get('operacao')?.invalid && formColaborador.get('operacao')?.touched" class="erro">
+    A operação é obrigatória.
+  </small>
+</div>
