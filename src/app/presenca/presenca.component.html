@@ -78,5 +78,18 @@
     </small>
   </div>
 
+    <div class="campo">
+    <label for="operacaoSelect">Operação:</label>
+    <select id="operacaoSelect" formControlName="operacao">
+      <option value="">Selecione uma operação</option>
+      <option *ngFor="let op of listaDeOperacoes" [ngValue]="op">
+        {{ op.nome }}
+      </option>
+    </select>
+    <small *ngIf="formLider.get('operacao')?.invalid && formLider.get('operacao')?.touched" class="erro">
+      A operação é obrigatória.
+    </small>
+  </div>
+
   <button type="submit" [disabled]="formLider.invalid">Enviar Diária Líder</button>
 </form>

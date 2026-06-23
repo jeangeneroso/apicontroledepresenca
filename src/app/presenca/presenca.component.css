@@ -1,9 +1,41 @@
 .abas-nav {
-  display: inline-block; /* Garante que fiquem lado a lado se necessário */
-  margin-right: 15px; /* Cria o espaçamento na direita */
+  display: inline-block; 
+  margin-right: 40px; 
+  font-size: 18px; 
 }
 
 /* Remove a margem da última aba para não sobrar espaço no final */
 .abas-nav:last-child {
   margin-right: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column; /* Faz o label ficar em cima do input/select */
+  margin-bottom: 25px;    
+}
+
+/* Espaço específico para desgrudar o label do input/select de dentro dele */
+.campo label {
+  font-size: 16px;      
+  font-weight: bold;    
+  margin-bottom: 8px;   
+}
+
+/* Aplica o tamanho maior para os inputs e selects do formulário */
+.campo input, 
+.campo select {
+  font-size: 16px;      
+  padding: 10px;        
+  border-radius: 4px;   
+  border: 1px solid #ccc;
+}
+
+/* Espaço em cima do botão para ele não colar no último campo */
+button[type="submit"] {
+  font-size: 18px;      /* Texto do botão maior */
+  padding: 12px 24px;   /* Botão maior e mais fácil de clicar */
+  font-weight: bold;
+  margin-top: 20px;
+  cursor: pointer;
 }
