@@ -3,7 +3,6 @@ import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
 import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-// Seu componente de diálogo real importado aqui:
 import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/error-dialog.component';
 
 @Component({
@@ -20,9 +19,7 @@ export class ColaboradoresComponent implements OnInit {
     'nomeColaborador',
     'rgColaborador',
     'cpfColaborador',
-    'chavePix',
-    'valorDiaria',
-    'valorHoraExtra'
+    'chavePix'
   ];
 
   // Injetando os serviços corretamente no construtor

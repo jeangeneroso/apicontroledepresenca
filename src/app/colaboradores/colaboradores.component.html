@@ -7,12 +7,12 @@
     <table mat-table [dataSource]="colaboradores" class="mat-elevation-z8">
 
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID
-          <mat-icon>account_box</mat-icon>
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            ID <mat-icon>account_box</mat-icon>
+          </span>
         </th>
-        <td mat-cell *matCellDef="let colaborador">
-          {{ colaborador.id }}
-        </td>
+        <td mat-cell *matCellDef="let colaborador"> {{ colaborador.id }} </td>
       </ng-container>
 
       <ng-container matColumnDef="nomeColaborador">
