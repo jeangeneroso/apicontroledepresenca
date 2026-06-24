@@ -1,6 +1,12 @@
 <mat-card>
   <mat-toolbar>
     <span class="titulo-centralizado"> Gestão de Colaboradores </span>
+
+    <span class="spacer"></span>
+
+    <button matFab extended (click)="incluir()" class="botao-incluir">
+      <mat-icon>person_add</mat-icon>
+    </button>
   </mat-toolbar>
 
   <div *ngIf="colaboradores$ | async as colaboradores; else loading">
@@ -45,18 +51,19 @@
         <td mat-cell *matCellDef="let colaborador"> {{colaborador.chavePix}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="valorDiaria">
-        <th mat-header-cell *matHeaderCellDef> Valor Diaria
-          <mat-icon>money</mat-icon>
-        </th>
-        <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorDiaria}} </td>
-      </ng-container>
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let colaborador">
+          
+          <button mat-icon-button (click)="edit(colaborador)" class="botao-editar" title="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-      <ng-container matColumnDef="valorHoraExtra">
-        <th mat-header-cell *matHeaderCellDef> Valor Hora Extra
-          <mat-icon>money</mat-icon>
-        </th>
-        <td mat-cell *matCellDef="let colaborador"> {{colaborador.valorHoraExtra}} </td>
+          <button mat-icon-button (click)="delete(colaborador)" class="botao-excluir" title="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

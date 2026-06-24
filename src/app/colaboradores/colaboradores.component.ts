@@ -12,6 +12,21 @@ import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/e
 })
 export class ColaboradoresComponent implements OnInit {
 
+  incluir() {
+    throw new Error('Method not implemented.');
+  }
+  edit(colaborador: any) {
+    console.log('Editando o colaborador:', colaborador);
+  }
+
+  delete(colaborador: any) {
+    console.log('Excluindo o colaborador:', colaborador);
+  }
+
+ /*   delete(colaborador: any) {
+      console.log('Excluindo o colaborador:', colaborador);
+  } */
+
   colaboradores$: Observable<Colaborador[]>;
 
   displayedColumns: string[] = [
@@ -19,7 +34,8 @@ export class ColaboradoresComponent implements OnInit {
     'nomeColaborador',
     'rgColaborador',
     'cpfColaborador',
-    'chavePix'
+    'chavePix',
+    'acoes'
   ];
 
   // Injetando os serviços corretamente no construtor
@@ -30,7 +46,7 @@ export class ColaboradoresComponent implements OnInit {
     this.colaboradores$ = this.colaboradoresService.list().pipe(
       catchError(error => {
         console.error('O Java deu erro! Detalhes:', error);
-        
+
         setTimeout(() => {
           this.openError('Erro ao carregar colaboradores da base de dados.');
         }, 0);
@@ -42,7 +58,7 @@ export class ColaboradoresComponent implements OnInit {
 
   // Método corrigido para abrir o diálogo correto
   openError(errorMsg: string) {
-    this.dialog.open(ErrorDialogComponent, { 
+    this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
   }
@@ -50,13 +66,13 @@ export class ColaboradoresComponent implements OnInit {
   ngOnInit(): void {
   }
 
- /*  ngOnInit(): void {
-    // FORCE ESTE TESTE:
-    setTimeout(() => {
-      this.openError('O sistema de módulos funcionou perfeitamente!');
-    }, 1000);
-  }
- */
+  /*  ngOnInit(): void {
+     // FORCE ESTE TESTE:
+     setTimeout(() => {
+       this.openError('O sistema de módulos funcionou perfeitamente!');
+     }, 1000);
+   }
+  */
   carregarColaboradores() {
     console.log("Buscando dados no Java...");
   }
