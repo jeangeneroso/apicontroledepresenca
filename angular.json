@@ -64,10 +64,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "controle-presenca:build:production"
+              "buildTarget": "controle-presenca:build:production"
             },
             "development": {
-              "browserTarget": "controle-presenca:build:development"
+              "buildTarget": "controle-presenca:build:development"
             }
           },
           "defaultConfiguration": "development"
