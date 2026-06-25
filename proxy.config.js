@@ -5,7 +5,6 @@ const PROXY_CONFIG = [
     secure: false,
     logLevel: 'debug',
     changeOrigin: true,
-    // ADICIONE ESSA LINHA ABAIXO:
     pathRewrite: { '^/api': '' } 
   }
 ];
