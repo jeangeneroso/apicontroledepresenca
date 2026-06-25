@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PresencaService } from 'src/app/services/presenca.service';
-import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 @Component({
   selector: 'app-presenca',

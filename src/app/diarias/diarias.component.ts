@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 @Component({
   selector: 'app-diarias',

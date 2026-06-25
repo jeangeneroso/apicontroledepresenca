@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AppMarterialModule } from '../../app-marterial/app-marterial.module';
+import { AppMarterialModule } from '../../app-material/app-material.module';
 
 @Component({
   selector: 'app-error-dialog',

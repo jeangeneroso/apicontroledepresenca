@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
-import { AppMarterialModule } from "../compartilhado/app-marterial/app-marterial.module";
+import { AppMarterialModule } from "../compartilhado/app-material/app-material.module";
 
 
 @Component({

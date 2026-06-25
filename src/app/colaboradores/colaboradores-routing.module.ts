@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ColaboradoresComponent } from './colaboradores.component';
+import { ColaboradoresFormComponent } from '../colaboradores-form/colaboradores-form.component';
 
 const routes: Routes = [
 
-    { path: '', component: ColaboradoresComponent } // O path aqui deve ser vazio
+    { path: '', component: ColaboradoresComponent },
+    { path: 'new', component: ColaboradoresFormComponent }  
 ];
 
 

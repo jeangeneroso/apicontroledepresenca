@@ -6,17 +6,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 
-@NgModule({
-  exports: [
-    MatTableModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatIconModule,
-    MatButtonModule
-  ],
-})
-export class AppMarterialModule { }
+export const AppMarterialModule = [
+  MatTableModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatIconModule,
+  MatButtonModule
+];
+

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LideresRoutingModule } from './lideres-routing.module';
 import { LideresComponent } from './lideres.component';
-import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 
 @NgModule({

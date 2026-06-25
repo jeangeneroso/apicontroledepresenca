@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Lider } from '../models/lider.model';
 import { LideresService } from '../services/lideres.service';
 import { CommonModule } from '@angular/common';
-import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 @Component({
   selector: 'app-lideres',
