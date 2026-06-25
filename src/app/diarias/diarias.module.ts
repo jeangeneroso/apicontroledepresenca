@@ -7,11 +7,11 @@ import { DiariasComponent } from './diarias.component';
 
 @NgModule({
   declarations: [
-    DiariasComponent
   ],
   imports: [
     CommonModule,
-    DiariasRoutingModule
+    DiariasRoutingModule,
+    DiariasComponent
   ]
 })
 export class DiariasModule { }

@@ -9,14 +9,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    ColaboradoresComponent
+
   ],
   imports: [
     CommonModule,
     ColaboradoresRoutingModule,
     AppMarterialModule,
     MatDialogModule,
-    CompartilhadoModule
+    CompartilhadoModule,
+    ColaboradoresComponent
 
   ]
 })

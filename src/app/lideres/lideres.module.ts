@@ -8,12 +8,12 @@ import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial
 
 @NgModule({
   declarations: [
-    LideresComponent
   ],
   imports: [
     CommonModule,
     LideresRoutingModule,
-    AppMarterialModule
+    AppMarterialModule,
+    LideresComponent
   ]
 })
 export class LideresModule { }

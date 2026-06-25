@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // <-- IMPORTANTE: Libera o *ngIf, *ngFor e async
+import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module'; // <-- IMPORTANTE: Ajuste o caminho correto para o seu módulo do Material
 import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
 import { catchError, Observable, of } from 'rxjs';
@@ -7,6 +9,11 @@ import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/e
 
 @Component({
   selector: 'app-colaboradores',
+  standalone: true,
+  imports: [
+    CommonModule,
+    AppMarterialModule 
+  ],
   templateUrl: './colaboradores.component.html',
   styleUrls: ['./colaboradores.component.css']
 })
@@ -15,6 +22,7 @@ export class ColaboradoresComponent implements OnInit {
   incluir() {
     throw new Error('Method not implemented.');
   }
+  
   edit(colaborador: any) {
     console.log('Editando o colaborador:', colaborador);
   }
@@ -22,10 +30,6 @@ export class ColaboradoresComponent implements OnInit {
   delete(colaborador: any) {
     console.log('Excluindo o colaborador:', colaborador);
   }
-
- /*   delete(colaborador: any) {
-      console.log('Excluindo o colaborador:', colaborador);
-  } */
 
   colaboradores$: Observable<Colaborador[]>;
 
@@ -38,7 +42,6 @@ export class ColaboradoresComponent implements OnInit {
     'acoes'
   ];
 
-  // Injetando os serviços corretamente no construtor
   constructor(
     private colaboradoresService: ColaboradoresService,
     public dialog: MatDialog
@@ -56,7 +59,6 @@ export class ColaboradoresComponent implements OnInit {
     );
   }
 
-  // Método corrigido para abrir o diálogo correto
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
@@ -66,13 +68,6 @@ export class ColaboradoresComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  /*  ngOnInit(): void {
-     // FORCE ESTE TESTE:
-     setTimeout(() => {
-       this.openError('O sistema de módulos funcionou perfeitamente!');
-     }, 1000);
-   }
-  */
   carregarColaboradores() {
     console.log("Buscando dados no Java...");
   }

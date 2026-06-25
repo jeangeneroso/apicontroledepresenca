@@ -1,16 +1,23 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PresencaService } from 'src/app/services/presenca.service';
+import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
 
 @Component({
   selector: 'app-presenca',
+  standalone: true,
+  imports: [
+    CommonModule,
+    AppMarterialModule
+  ],
   templateUrl: './presenca.component.html',
   styleUrls: ['./presenca.component.css']
 })
 export class PresencaComponent implements OnInit {
 
   abaAtiva: string = 'colaborador';
-  
+
   formColaborador!: FormGroup;
   formLider!: FormGroup;
 
@@ -22,7 +29,7 @@ export class PresencaComponent implements OnInit {
   constructor(
     private presencaService: PresencaService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // 1. Inicializando o formulário do Colaborador com os campos corretos

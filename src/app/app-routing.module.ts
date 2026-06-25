@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   // 1. ROTA INICIAL: Quando abrir o site, redireciona direto para o login
   { path: '', pathMatch: 'full', redirectTo: 'login' },
 

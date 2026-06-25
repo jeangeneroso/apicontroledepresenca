@@ -8,13 +8,14 @@ import { PresencaComponent } from './presenca.component';
 
 @NgModule({
   declarations: [
-    PresencaComponent
+
   ],
   imports: [
     CommonModule,
     PresencaRoutingModule,
     MatTableModule,
-    ReactiveFormsModule // <-- ADICIONE AQUI TAMBÉM
+    ReactiveFormsModule,
+    PresencaComponent
   ]
 })
 export class PresencaModule { }

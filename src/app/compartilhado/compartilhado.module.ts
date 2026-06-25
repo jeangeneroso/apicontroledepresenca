@@ -7,13 +7,13 @@ import { AppMarterialModule } from './app-marterial/app-marterial.module';
 
 @NgModule({
   declarations: [
-    ErrorDialogComponent
   ],
   imports: [
     CommonModule,
-    AppMarterialModule
+    AppMarterialModule,
+    ErrorDialogComponent
   ],
-  exports:[
+  exports: [
     ErrorDialogComponent
   ]
 })
