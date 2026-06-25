@@ -1,6 +1,6 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { AppRoutingModule, routes } from './app-routing.module'; // Ajuste o caminho se suas rotas estiverem em app.routes.ts
+import { AppRoutingModule, routes } from './app-routing.module';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';

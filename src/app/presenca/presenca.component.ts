@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PresencaService } from 'src/app/services/presenca.service';
 import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial.module';
 
@@ -9,7 +9,8 @@ import { AppMarterialModule } from '../compartilhado/app-marterial/app-marterial
   standalone: true,
   imports: [
     CommonModule,
-    AppMarterialModule
+    AppMarterialModule,
+    ReactiveFormsModule
   ],
   templateUrl: './presenca.component.html',
   styleUrls: ['./presenca.component.css']
