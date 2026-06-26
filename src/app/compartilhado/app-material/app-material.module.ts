@@ -6,8 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const AppMarterialModule = [
   MatTableModule,
@@ -16,6 +17,10 @@ export const AppMarterialModule = [
   MatProgressSpinnerModule,
   MatDialogModule,
   MatIconModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormFieldModule,
+  ReactiveFormsModule,
+  MatInputModule,
+  
 ];
 
