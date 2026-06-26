@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ColaboradoresService } from '@services/colaboradores.service';
 
 @Component({
   selector: 'app-colaboradores-form',
@@ -17,9 +18,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ColaboradoresFormComponent implements OnInit {
 
   form: FormGroup
-formLider: any;
+  formLider: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private service: ColaboradoresService
+
+  ) {
 
     this.form = this.formBuilder.group({
 
@@ -32,7 +37,9 @@ formLider: any;
   }
 
   onSubmit() {
-    throw new Error('Method not implemented.');
+    this.service.save(this.form.value).subscribe((colaborador) => {
+    console.log('Salvou com sucesso!', colaborador);
+  });
   }
 
   onCancel() {
@@ -40,7 +47,7 @@ formLider: any;
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
 }

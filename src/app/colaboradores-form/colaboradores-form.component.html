@@ -30,11 +30,16 @@
         </mat-form-field>
 
         <mat-card-actions>
-            <button mat-raised-button (click)="onSubmit()"> Salvar </button>
+            <button mat-raised-button type="button" color="primary" (click)="onSubmit()"> Salvar </button>
             <button mat-raised-button (click)="onCancel()"> Cancelar </button>
         </mat-card-actions>
 
-        <mat-card-actions>
+    </form>
+
+</mat-card>
+
+
+     <!--  <mat-card-actions>
             <button 
                 mat-raised-button 
                 color="primary" 
@@ -50,16 +55,12 @@
                 Cancelar
             </button>
         </mat-card-actions>
+        
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <mat-card-actions>
+        <button mat-raised-button type="submit" color="primary"> Salvar </button>
+    </mat-card-actions>
 
-    </form>
-
-
-<!--     <form [formGroup]="formLider" (ngSubmit)="onSubmit()">
-
-        <button mat-raised-button color="primary" type="submit" [disabled]="formLider.invalid">
-            Salvar
-        </button>
-
-    </form> -->
-
-</mat-card>
+</form>
+-->
