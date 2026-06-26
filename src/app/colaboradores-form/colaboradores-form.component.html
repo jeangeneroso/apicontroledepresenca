@@ -1,1 +1,65 @@
-<p>colaboradores-form works!</p>
+<mat-card>
+
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title> Cadastro do Colaborador </mat-card-title>
+            <mat-card-subtitle> Cadastro do Colaborador </mat-card-subtitle>
+            <img mat-card-sm-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg">
+        </mat-card-title-group>
+    </mat-card-header>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Nome do Colaborador </mat-label>
+            <input matInput placeholder=" Nome do Colaborador " formControlName="nomeColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> RG do Colaborador </mat-label>
+            <input matInput placeholder=" RG do Colaborador " formControlName="rgColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> CPF do Colaborador </mat-label>
+            <input matInput placeholder=" CPF do Colaborador " formControlName="cpfColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Chave PIX </mat-label>
+            <input matInput placeholder=" Chave PIX " formControlName="chavePix">
+        </mat-form-field>
+
+        <mat-card-actions>
+            <button mat-raised-button (click)="onSubmit()"> Salvar </button>
+            <button mat-raised-button (click)="onCancel()"> Cancelar </button>
+        </mat-card-actions>
+
+        <mat-card-actions>
+            <button 
+                mat-raised-button 
+                color="primary" 
+                type="submit" 
+                [disabled]="form.invalid">
+                Salvar
+            </button>
+            
+            <button 
+                mat-raised-button 
+                type="button" 
+                (click)="onCancel()">
+                Cancelar
+            </button>
+        </mat-card-actions>
+
+    </form>
+
+
+<!--     <form [formGroup]="formLider" (ngSubmit)="onSubmit()">
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="formLider.invalid">
+            Salvar
+        </button>
+
+    </form> -->
+
+</mat-card>

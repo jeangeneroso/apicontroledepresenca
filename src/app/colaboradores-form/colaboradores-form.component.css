@@ -1,0 +1,30 @@
+mat-card{
+    max-width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Força os campos a caírem para a próxima linha */
+  gap: 16px;             /* Cria um espaçamento vertical agradável entre os campos */
+  padding: 16px;          /* Afasta os campos das bordas do card */
+}
+
+full-width{
+    width: 100%;
+}
+
+min-width{
+    width: 100%;
+    min-width: 150%;
+}
+
+
+.botoes-container {
+  display: flex;
+  justify-content: center; /* Centraliza os botões horizontalmente */
+  gap: 16px;               /* Cria o espaço de separação exato entre eles */
+  margin-top: 24px;        /* Dá um espaço agradável entre os inputs e os botões */
+  width: 100%;             /* Garante que o container use toda a largura disponível */
+}
