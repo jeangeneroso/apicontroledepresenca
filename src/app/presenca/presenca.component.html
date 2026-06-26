@@ -51,7 +51,11 @@
     </small>
   </div>
 
-  <button type="submit" [disabled]="formColaborador.invalid"> Enviar Diaria Colaborador </button>
+  <button mat-raised-button (click)="onSubmit()"> Enviar Diaria Colaborador </button>
+
+  <button mat-raised-button type="submit" [disabled]="formColaborador.invalid"> Enviar Diaria Colaborador </button>
+
+
 </form>
 
 <form *ngIf="abaAtiva === 'lider'" [formGroup]="formLider" (ngSubmit)="salvarLider()">
@@ -91,5 +95,8 @@
     </small>
   </div>
 
-  <button type="submit" [disabled]="formLider.invalid">Enviar Diária Líder</button>
+  <button mat-raised-button (click)="onSubmit()"> Enviar Diária Líder </button>
+
+  <button mat-raised-button type="submit" [disabled]="formLider.invalid">Enviar Diária Líder</button>
+
 </form>

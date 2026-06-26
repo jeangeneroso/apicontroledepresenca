@@ -32,6 +32,11 @@ export class PresencaComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
+
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
+
   ngOnInit(): void {
     // 1. Inicializando o formulário do Colaborador com os campos corretos
     this.formColaborador = this.fb.group({
