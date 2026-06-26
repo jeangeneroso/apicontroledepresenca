@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 export const AppMarterialModule = [
   MatTableModule,
@@ -21,6 +22,7 @@ export const AppMarterialModule = [
   MatFormFieldModule,
   ReactiveFormsModule,
   MatInputModule,
-  
+  MatSnackBarModule,
+
 ];
 
