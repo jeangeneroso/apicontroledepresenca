@@ -16,18 +16,6 @@ export class ColaboradoresService {
 
   list() {
 
-    /*    return [
-   
-         { id:'', 
-           nomeColaborador:'', 
-           rgColaborador:'',
-           cpfColaborador:'',
-           chavePix:'',
-           valorDiaria:'',
-           valorHoraExtra:''}
-           
-       ]; */
-
     return this.httpClient.get<Colaborador[]>(this.API)
       .pipe(
         first(),

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Lider } from '../models/lider.model';
 import { HttpClient } from '@angular/common/http';
+import { first, Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +9,25 @@ import { HttpClient } from '@angular/common/http';
 
 export class LideresService {
 
-  constructor( private httpCient:HttpClient ) { }
+  private readonly API = '/api/lideres'
 
-  list(): Lider[] {
+  constructor( private httpClient:HttpClient ) { }
 
-    return [
-        {id:'',
-        nomeLider:'',
-        rgLider:'',
-        cpfLider:'',
-        chavePix:'',
-        valorDiaria:'',
-        valorHoraExtra:''}
+  list() {
 
 
-    ];
-
+    return this.httpClient.get<Lider[]>(this.API)
+          .pipe(
+            first(),
+            tap(lideres => console.log(lideres))
+          );
+    
   }
+
+  save(lider: Lider) : Observable<Lider>{
+   return this.httpClient.post<Lider>(this.API,lider);
+  }
+
+
+
 }

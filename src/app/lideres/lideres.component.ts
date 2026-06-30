@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common'; // <-- IMPORTANTE: Libera o *ngIf, *ngFor e async
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { Lider } from '../models/lider.model';
 import { LideresService } from '../services/lideres.service';
-import { CommonModule } from '@angular/common';
-import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
+import { catchError, Observable, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-lideres',
@@ -16,7 +21,7 @@ import { AppMarterialModule } from '../compartilhado/app-material/app-material.m
 })
 export class LideresComponent {
 
-  lideres: Lider[] = [];
+  lideres$: Observable<Lider[]>;
 
   displayedColumns: string[] = [
     'id',
@@ -24,28 +29,51 @@ export class LideresComponent {
     'rgLider',
     'cpfLider',
     'chavePix',
-    'valorDiaria',
-    'valorHoraExtra']
+    'acoes'
+    ]
+lider: any;
 
-  constructor(private lideresService: LideresService) { }
+  constructor(private lideresService: LideresService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+
+   this.lideres$ = this.lideresService.list().pipe(
+      catchError(error => {
+        console.error('O Java deu erro! Detalhes:', error);
+
+        setTimeout(() => {
+          this.openError('Erro ao carregar lideres da base de dados.');
+        }, 0);
+
+        return of([]);
+      })
+    );
+  }
+
+  incluir() {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  edit(lider: any) {
+    console.log('Editando o lider:', lider);
+  }
+
+  delete(lider: any) {
+    console.log('Excluindo o lider:', lider);
+  }
+
+  openError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
+  }
 
   ngOnInit(): void {
-    // 1. O componente carregou!
-    // 2. Agora pedimos os dados para o Java
-    this.carregarLideres();
   }
 
   carregarLideres() {
     console.log("Buscando dados no Java...");
   }
-
-
-  /* Exemplo de como ficará sua chamada futuramente:
-    
-    this.colaboradoresService.listarTodos().subscribe({
-      next: (dados) => this.colaboradores = dados,
-      error: (err) => console.error("Erro ao buscar colaboradores", err)
-    });
-  */
-
 }

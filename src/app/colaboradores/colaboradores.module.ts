@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
 
   ],
+
   imports: [
     CommonModule,
     ColaboradoresRoutingModule,
@@ -21,4 +22,5 @@ import { MatDialogModule } from '@angular/material/dialog';
 
   ]
 })
+
 export class ColaboradoresModule { }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LideresComponent } from './lideres.component';
+import { LideresFormComponent } from '../lideres-form/lideres-form.component'
 
 const routes: Routes = [
   
