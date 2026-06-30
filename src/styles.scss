@@ -2,9 +2,11 @@
 
 @include mat.core(); 
 
-// CORREÇÃO: Adicionado o prefixo m2- nas funções e variáveis legadas
-$custom-app-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
-$custom-app-secundary: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+// CONFIGURAÇÃO DE CORES E DENSIDADE (TEMA)
+// Azul escuro utilizando o tom 900 da paleta Blue
+$custom-app-primary: mat.m2-define-palette(mat.$m2-blue-palette, 900);
+// Amarelo vivo utilizando a paleta Amber (tom A400 para excelente contraste)
+$custom-app-secundary: mat.m2-define-palette(mat.$m2-amber-palette, A400);
 $custom-app-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
 $custom-theme: mat.m2-define-light-theme((
@@ -14,20 +16,20 @@ $custom-theme: mat.m2-define-light-theme((
     warn: $custom-app-warn,
   ),
   typography: mat.m2-define-typography-config(), 
-  density: 0, 
+  // Densidade alterada para -2 para diminuir o tamanho dos componentes
+  density: -2, 
 ));
 
-// Aplica o tema usando a diretiva atualizada para a nova versão do Angular
+// Aplica o tema configurado
 @include mat.all-component-themes($custom-theme);
 
+// ESTILOS GERAIS e LAYOUT
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 
 mat-icon {
   font-family: 'Material Icons' !important;
 }
-
 
 .container-principal, div[style*="display: flex"] {
   display: flex !important;
@@ -38,16 +40,15 @@ mat-icon {
   box-sizing: border-box;
 }
 
-
+// MENU LATERAL (Ajustado para 200px para ficar um pouco menor)
 .menu-lateral {
-  width: 240px !important;
-  min-width: 240px !important;
+  width: 200px !important;
+  min-width: 200px !important;
   background-color: #f5f5f5;
   border-right: 1px solid #ddd;
   align-self: stretch; 
   padding-top: 15px;
 }
-
 
 .menu-lateral nav {
   display: flex;
@@ -56,7 +57,7 @@ mat-icon {
 
 .link-menu {
   display: block;
-  padding: 15px 20px;
+  padding: 12px 15px; /* Diminuído levemente o espaçamento interno dos links */
   color: #333;
   text-decoration: none;
   font-weight: 500;
@@ -67,7 +68,7 @@ mat-icon {
   background-color: #e0e0e0;
 }
 
-
+// CONTEÚDO PRINCIPAL
 .conteudo-principal {
   flex: 1 !important; 
   min-width: 0 !important; 
@@ -75,6 +76,7 @@ mat-icon {
   box-sizing: border-box;
 }
 
+// CONFIGURAÇÃO DOS ÍCONES
 .material-icons, 
 mat-icon {
   font-family: 'Material Icons' !important;
