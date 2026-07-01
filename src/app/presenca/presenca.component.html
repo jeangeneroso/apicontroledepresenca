@@ -28,6 +28,7 @@
   <div class="campo">
     <label for="colaboradorSelect">Colaborador:</label>
     <select id="colaboradorSelect" formControlName="colaborador">
+      <option value="null">Selecione uma operação</option>
       <option value="">Selecione um colaborador</option>
       <option *ngFor="let colab of listaDeColaboradores" [ngValue]="colab">
         {{ colab.nome }}
@@ -41,6 +42,7 @@
   <div class="campo">
     <label for="operacaoSelect">Operação:</label>
     <select id="operacaoSelect" formControlName="operacao">
+      <option value="null">Selecione uma operação</option>
       <option value="">Selecione uma operação</option>
       <option *ngFor="let op of listaDeOperacoes" [ngValue]="op">
         {{ op.nome }}
@@ -72,6 +74,7 @@
   <div class="campo">
     <label for="liderSelect">Líder:</label>
     <select id="liderSelect" formControlName="lider">
+      <option value="null">Selecione uma operação</option>
       <option value="">Selecione o Líder</option>
       <option *ngFor="let lid of listaDeLideres" [ngValue]="lid">
         {{ lid.nome }}
@@ -85,6 +88,7 @@
     <div class="campo">
     <label for="operacaoSelect">Operação:</label>
     <select id="operacaoSelect" formControlName="operacao">
+      <option value="null">Selecione uma operação</option>
       <option value="">Selecione uma operação</option>
       <option *ngFor="let op of listaDeOperacoes" [ngValue]="op">
         {{ op.nome }}

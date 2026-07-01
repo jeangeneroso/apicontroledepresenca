@@ -25,7 +25,7 @@ export class ColaboradoresService {
   }
 
   save(colaborador: Colaborador) : Observable<Colaborador>{
-   return this.httpClient.post<Colaborador>(this.API, colaborador);
+   return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
   }
 
 

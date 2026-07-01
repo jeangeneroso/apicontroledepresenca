@@ -1,0 +1,107 @@
+<div class="container-presenca">
+  <mat-tab-group dynamicHeight>
+    
+    <mat-tab label="Diaria Colaborador">
+      <div class="tab-content">
+        <form [formGroup]="formColaborador" (ngSubmit)="salvarColaborador()">
+          <h3>Registro de Diaria - Colaborador</h3>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="pickerColab" formControlName="data" id="dataColab">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerColab"></mat-datepicker-toggle>
+            <mat-datepicker #pickerColab></mat-datepicker>
+            <mat-error *ngIf="formColaborador.get('data')?.invalid && formColaborador.get('data')?.touched">
+              A data é obrigatória.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Colaborador</mat-label>
+            <mat-select formControlName="colaborador" id="colaboradorSelect">
+              <mat-option [value]="null">Selecione um colaborador</mat-option>
+              <mat-option *ngFor="let colab of listaDeColaboradores" [value]="colab">
+                {{ colab.nome }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formColaborador.get('colaborador')?.invalid && formColaborador.get('colaborador')?.touched">
+              O colaborador é obrigatório.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Operação</mat-label>
+            <mat-select formControlName="operacao" id="operacaoSelectColab">
+              <mat-option [value]="null">Selecione uma operação</mat-option>
+              <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
+                {{ op.nome }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formColaborador.get('operacao')?.invalid && formColaborador.get('operacao')?.touched">
+              A operação é obrigatória.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="formColaborador.invalid">
+              Enviar Diaria Colaborador
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Diaria Líder">
+      <div class="tab-content">
+        <form [formGroup]="formLider" (ngSubmit)="salvarLider()">
+          <h3>Registro de Diaria - Líder</h3>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="pickerLider" formControlName="data" id="dataLider">
+            <mat-hint>DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerLider"></mat-datepicker-toggle>
+            <mat-datepicker #pickerLider></mat-datepicker>
+            <mat-error *ngIf="formLider.get('data')?.invalid && formLider.get('data')?.touched">
+              A data é obrigatória.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Líder</mat-label>
+            <mat-select formControlName="lider" id="liderSelect">
+              <mat-option [value]="null">Selecione o Líder</mat-option>
+              <mat-option *ngFor="let lid of listaDeLideres" [value]="lid">
+                {{ lid.nome }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formLider.get('lider')?.invalid && formLider.get('lider')?.touched">
+              O líder é obrigatório.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="campo-full-width">
+            <mat-label>Operação</mat-label>
+            <mat-select formControlName="operacao" id="operacaoSelectLider">
+              <mat-option [value]="null">Selecione uma operação</mat-option>
+              <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
+                {{ op.nome }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="formLider.get('operacao')?.invalid && formLider.get('operacao')?.touched">
+              A operação é obrigatória.
+            </mat-error>
+          </mat-form-field>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="formLider.invalid">
+              Enviar Diária Líder
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
