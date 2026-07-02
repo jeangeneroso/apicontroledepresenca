@@ -1,41 +1,56 @@
-.abas-nav {
-  display: inline-block; 
-  margin-right: 40px; 
-  font-size: 18px; 
-}
-
-/* Remove a margem da última aba para não sobrar espaço no final */
-.abas-nav:last-child {
-  margin-right: 0;
-}
-
-.campo {
+/* CONTAINER DAS ABAS (Onde ficam os botões de alternar) */
+.container-presenca {
   display: flex;
-  flex-direction: column; /* Faz o label ficar em cima do input/select */
-  margin-bottom: 25px;    
+  gap: 25px;
+  margin-bottom: 30px;
+  max-width: 350px;
 }
 
-/* Espaço específico para desgrudar o label do input/select de dentro dele */
-.campo label {
-  font-size: 16px;      
-  font-weight: bold;    
-  margin-bottom: 8px;   
+.abas-nav {
+  display: flex;
+  gap: 20px; 
 }
 
-/* Aplica o tamanho maior para os inputs e selects do formulário */
-.campo input, 
-.campo select {
-  font-size: 16px;      
-  padding: 10px;        
-  border-radius: 4px;   
-  border: 1px solid #ccc;
-}
-
-/* Espaço em cima do botão para ele não colar no último campo */
-button[type="submit"] {
-  font-size: 18px;      /* Texto do botão maior */
-  padding: 12px 24px;   /* Botão maior e mais fácil de clicar */
+/* Estilo para a aba ativa */
+.abas-nav button.ativa {
+  border-bottom: 2px solid #3f51b5; 
+  color: #3f51b5;
   font-weight: bold;
-  margin-top: 20px;
-  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* CAMPOS DO FORMULÁRIO (Angular Material) */
+.campo-custom {
+  display: block;
+  width: 100% !important;
+  max-width: 400px; 
+  margin-bottom: 32px;
+}
+
+/* CORREÇÃO AQUI: Alvo direto no container do Angular Material */
+mat-form-field.campo-custom {
+  width: 100%;
+}
+
+/* Força o seletor interno do mat-select a ocupar o espaço */
+.campo-custom mat-select {
+  width: 100%;
+}
+
+/* BOTÕES DE AÇÃO (mat-card-actions) */
+mat-card-actions {
+  display: flex;
+  gap: 30px;       
+  margin-top: 24px; 
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 24px;
 }

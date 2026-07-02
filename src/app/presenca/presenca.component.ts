@@ -48,7 +48,9 @@ export class PresencaComponent implements OnInit {
     // 2. Inicializando o formulário do Líder
     this.formLider = this.fb.group({
       data: ['', Validators.required],
-      lider: [null, Validators.required]        // Receberá o objeto/ID do líder selecionado
+      colaborador: [null, Validators.required],
+      lider: [null, Validators.required],   // Receberá o objeto/ID do líder selecionado
+      operacao: [null, Validators.required]
     });
 
     // 3. Chamar os métodos para carregar os dados assim que a tela abrir
@@ -98,4 +100,9 @@ export class PresencaComponent implements OnInit {
       });
     }
   }
+
+  onCancel() {
+    throw new Error('Method not implemented.');
+  }
+
 }
