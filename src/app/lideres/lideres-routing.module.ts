@@ -4,8 +4,9 @@ import { LideresComponent } from './lideres.component';
 import { LideresFormComponent } from '../lideres-form/lideres-form.component'
 
 const routes: Routes = [
-  
-{ path: '', component: LideresComponent }
+
+  { path: '', component: LideresComponent },
+  { path: 'new',component:LideresFormComponent}
 
 ];
 

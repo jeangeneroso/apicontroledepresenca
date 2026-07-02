@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- IMPORTANTE: Libera o *ngIf, *ngFor e async
+import { CommonModule } from '@angular/common';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { Lider } from '../models/lider.model';
 import { LideresService } from '../services/lideres.service';
@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './lideres.component.html',
   styleUrls: ['./lideres.component.css']
 })
-export class LideresComponent {
+export class LideresComponent implements OnInit {
 
   lideres$: Observable<Lider[]>;
 
@@ -31,9 +31,9 @@ export class LideresComponent {
     'chavePix',
     'acoes'
     ]
-lider: any;
 
-  constructor(private lideresService: LideresService,
+  constructor(
+    private lideresService: LideresService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute

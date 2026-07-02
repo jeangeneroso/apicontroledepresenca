@@ -21,13 +21,12 @@ export class LideresService {
             first(),
             tap(lideres => console.log(lideres))
           );
-    
+              
   }
 
   save(lider: Lider) : Observable<Lider>{
-   return this.httpClient.post<Lider>(this.API,lider);
+   return this.httpClient.post<Lider>(this.API,lider).pipe((first()));
   }
-
 
 
 }

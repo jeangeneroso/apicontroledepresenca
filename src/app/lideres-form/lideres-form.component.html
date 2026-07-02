@@ -1,1 +1,38 @@
-<p>lideres-form works!</p>
+<mat-card>
+
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title> Cadastro do Lider </mat-card-title>
+            <img mat-card-sm-image src="assets/GN_logo.jpg">
+        </mat-card-title-group>
+    </mat-card-header>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Nome do Lider </mat-label>
+            <input matInput placeholder=" Nome do Colaborador " formControlName="nomeColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> RG do Lider </mat-label>
+            <input matInput placeholder=" RG do Colaborador " formControlName="rgColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> CPF do Lider </mat-label>
+            <input matInput placeholder=" CPF do Colaborador " formControlName="cpfColaborador">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Chave PIX </mat-label>
+            <input matInput placeholder=" Chave PIX " formControlName="chavePix">
+        </mat-form-field>
+
+        <mat-card-actions>
+            <button mat-raised-button type="button" color="primary" (click)="onSubmit()"> Salvar </button>
+            <button mat-raised-button (click)="onCancel()"> Cancelar </button>
+        </mat-card-actions>
+
+    </form>
+
+</mat-card>
