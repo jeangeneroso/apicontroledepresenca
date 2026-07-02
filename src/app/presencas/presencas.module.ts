@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms'; // <-- ADICIONE ESTE IMPORT
 import { MatTableModule } from '@angular/material/table';
-import { PresencaRoutingModule } from './presenca-routing.module';
-import { PresencaComponent } from './presenca.component';
+import { PresencaRoutingModule } from './presencas-routing.module';
+import { PresencaComponent } from './presencas.component';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 @NgModule({

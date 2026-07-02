@@ -1,21 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
+import { Colaborador } from '../models/colaborador.model';
+import { Lider } from '../models/lider.model';
 
 @Injectable({
-  providedIn: 'root' // <-- ISSO É CRUCIAL para o Angular saber injetar o service
+  providedIn: 'root' 
 })
-export class PresencaService { // <-- O nome aqui deve ser EXATAMENTE este
+export class PresencaService {
 
-  private readonly API_URL = 'http://localhost:8080/api/presencas';
+  private readonly API = '/api/presencas'
 
   constructor(private http: HttpClient) { }
 
-  salvarPresencaColaborador(dadosColaborador: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/colaborador`, dadosColaborador);
+  /* salvarPresencaColaborador(colaborador: Colaborador): Observable<Colaborador> {
+    return this.http.post<Colaborador>(`${this.API}/colaborador`, colaborador).pipe(first());
   }
 
-  salvarPresencaLider(dadosLider: any): Observable<any> {
-    return this.http.post(`${this.API_URL}/lider`, dadosLider);
+   salvarPresencaLider(lider: Lider): Observable<Lider> {
+    return this.http.post<Lider>(`${this.API}/lider`, lider).pipe(first());;
+  } */
+
+  salvarPresencaColaborador(colaborador: any): Observable<any> {
+    return this.http.post<any>(`${this.API}/colaborador`, colaborador).pipe(first());
   }
+
+  salvarPresencaLider(lider: any): Observable<any> {
+    return this.http.post<any>(`${this.API}/lider`, lider).pipe(first());
+  }
+
+
 }

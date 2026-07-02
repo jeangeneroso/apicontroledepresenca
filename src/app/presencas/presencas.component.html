@@ -70,17 +70,17 @@
 
    <mat-form-field appearance="fill" class="campo-custom">
   <mat-label>Data</mat-label>
-  <input matInput [matDatepicker]="pickerColab" formControlName="data">
-  <mat-datepicker-toggle matIconSuffix [for]="pickerColab"></mat-datepicker-toggle>
-  <mat-datepicker #pickerColab></mat-datepicker>
-  <mat-error *ngIf="formColaborador.get('data')?.hasError('required')">
+  <input matInput [matDatepicker]="pickerLider" formControlName="data">
+  <mat-datepicker-toggle matIconSuffix [for]="pickerLider"></mat-datepicker-toggle>
+  <mat-datepicker #pickerLider></mat-datepicker>
+  <mat-error *ngIf="formLider.get('data')?.hasError('required')">
     A data é obrigatória.
   </mat-error>
 </mat-form-field>
 
     <mat-form-field appearance="fill" class="campo-total">
       <mat-label>Líder</mat-label>
-      <mat-select formControlName="lider">
+      <mat-select formControlName="lider" [compareWith]="compararObjetos">
         <mat-option [value]="null">Selecione o Líder</mat-option>
         <mat-option *ngFor="let lid of listaDeLideres" [value]="lid">
           {{ lid.nome }}
@@ -93,7 +93,7 @@
 
     <mat-form-field appearance="fill" class="campo-total">
       <mat-label>Operação</mat-label>
-      <mat-select formControlName="operacao">
+      <mat-select formControlName="operacao" [compareWith]="compararObjetos">
         <mat-option [value]="null">Selecione uma operação</mat-option>
         <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
           {{ op.nome }}

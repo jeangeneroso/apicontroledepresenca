@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PresencaService } from 'src/app/services/presenca.service';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-presenca',
@@ -12,8 +13,8 @@ import { AppMarterialModule } from '../compartilhado/app-material/app-material.m
     AppMarterialModule,
     ReactiveFormsModule
   ],
-  templateUrl: './presenca.component.html',
-  styleUrls: ['./presenca.component.css']
+  templateUrl: './presencas.component.html',
+  styleUrls: ['./presencas.component.css']
 })
 export class PresencaComponent implements OnInit {
 
@@ -29,13 +30,9 @@ export class PresencaComponent implements OnInit {
 
   constructor(
     private presencaService: PresencaService,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder
   ) { }
-
-
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
 
   ngOnInit(): void {
     // 1. Inicializando o formulário do Colaborador com os campos corretos
@@ -48,7 +45,6 @@ export class PresencaComponent implements OnInit {
     // 2. Inicializando o formulário do Líder
     this.formLider = this.fb.group({
       data: ['', Validators.required],
-      colaborador: [null, Validators.required],
       lider: [null, Validators.required],   // Receberá o objeto/ID do líder selecionado
       operacao: [null, Validators.required]
     });
@@ -69,6 +65,8 @@ export class PresencaComponent implements OnInit {
     this.listaDeColaboradores = [{ id: 1, nome: 'João Silva' }, { id: 2, nome: 'Maria Souza' }];
     this.listaDeOperacoes = [{ id: 1, nome: 'Operação Logística' }, { id: 2, nome: 'Operação Produção' }];
     this.listaDeLideres = [{ id: 1, nome: 'Carlos Gerente' }, { id: 2, nome: 'Ana Supervisora' }];
+
+
   }
 
   trocarAba(aba: string) {
@@ -76,33 +74,81 @@ export class PresencaComponent implements OnInit {
   }
 
   salvarColaborador() {
-    if (this.formColaborador.valid) {
-      // Como o formColaborador.value agora envia { data, colaborador, operacao },
-      // ele encaixa perfeitamente no que o seu "RegistroDiaria.java" espera receber!
-      this.presencaService.salvarPresencaColaborador(this.formColaborador.value).subscribe({
-        next: (resposta: any) => {
-          console.log('Diaria do colaborador salva com sucesso!', resposta);
-          this.formColaborador.reset();
-        },
-        error: (erro: any) => console.error('Erro ao salvar colaborador', erro)
-      });
-    }
+    const dadosForm = this.formColaborador.value;
+    const dadosFormatados = {
+      data: dadosForm.data, // mapeia para o seu getDia/setDia
+      colaborador: { id: dadosForm.colaborador }, // vira o objeto @ManyToOne
+      operacao: { id: dadosForm.operacao } // vira o objeto @ManyToOne
+    };
+
+    this.presencaService.salvarPresencaColaborador(this.formColaborador.value).subscribe({
+      next: (colaborador) => {
+        console.log('Diaria do colaborador salva com sucesso!', colaborador);
+        this.formColaborador.reset();
+        this.onSucess();
+      },
+      error: (error) => this.onError()
+    });
   }
 
+  /* salvarLider() {
+    const dadosForm = this.formLider.value;
+
+    const dadosFormatados = {
+      data: dadosForm.data,
+      lider: { id: dadosForm.lider.id },
+      operacao: { id: dadosForm.operacao.id }
+    };
+
+    // CORREÇÃO: Passar 'dadosFormatados' em vez de 'this.formLider.value'
+    this.presencaService.salvarPresencaLider(dadosFormatados).subscribe({
+      next: (resposta: any) => {
+        console.log('Diaria do líder salva com sucesso!', resposta);
+        this.formLider.reset();
+        this.onSucess();
+      },
+      error: (error) => this.onError()
+    });
+  } */
+
   salvarLider() {
-    if (this.formLider.valid) {
-      this.presencaService.salvarPresencaLider(this.formLider.value).subscribe({
-        next: (resposta: any) => {
-          console.log('Diaria do líder salva com sucesso!', resposta);
-          this.formLider.reset();
-        },
-        error: (erro: any) => console.error('Erro ao salvar líder', erro)
-      });
-    }
+    const dadosForm = this.formLider.value;
+
+    const dadosFormatados = {
+      data: dadosForm.data,
+      lider: { id: dadosForm.lider.id },
+      operacao: { id: dadosForm.operacao.id }
+    };
+
+    // VEJA SE ESTÁ ASSIM: Você DEVE passar 'dadosFormatados' aqui dentro!
+    this.presencaService.salvarPresencaLider(dadosFormatados).subscribe({
+      next: (resposta: any) => {
+        console.log('Diaria do líder salva com sucesso!', resposta);
+        this.formLider.reset();
+        this.onSucess();
+      },
+      error: (error) => this.onError()
+    });
+  }
+
+  compararObjetos(o1: any, o2: any): boolean {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
+  }
+
+  private onSucess() {
+
+    this.snackBar.open(' Colaborador cadastrado com sucesso! ', ' Fechar ', {
+      duration: 5000
+    });
+  }
+
+  private onError() {
+    this.snackBar.open(' Erro ao salvar o colaborador ', ' Fechar ', {
+      duration: 5000
+    });
   }
 
   onCancel() {
     throw new Error('Method not implemented.');
   }
-
 }

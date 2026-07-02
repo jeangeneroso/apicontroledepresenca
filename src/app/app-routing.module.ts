@@ -17,7 +17,7 @@ export const routes: Routes = [
     children: [
       { 
         path: 'presenca', 
-        loadChildren: () => import('./presenca/presenca.module').then(m => m.PresencaModule) 
+        loadChildren: () => import('./presencas/presencas.module').then(m => m.PresencaModule) 
       },
       { 
         path: 'colaboradores', 
