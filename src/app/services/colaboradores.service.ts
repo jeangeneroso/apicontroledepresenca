@@ -6,13 +6,12 @@ import { first, Observable, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ColaboradoresService {
 
   private readonly API = '/api/colaboradores'
 
   constructor(private httpClient: HttpClient) { }
-
-  // list (): Colaborador [] {
 
   list() {
 
@@ -27,7 +26,5 @@ export class ColaboradoresService {
   save(colaborador: Colaborador) : Observable<Colaborador>{
    return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
   }
-
-
 
 }

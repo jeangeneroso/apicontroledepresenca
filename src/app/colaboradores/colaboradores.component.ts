@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // <-- IMPORTANTE: Libera o *ngIf, *ngFor e async
-import { AppMarterialModule } from '../compartilhado/app-material/app-material.module'; // <-- IMPORTANTE: Ajuste o caminho correto para o seu módulo do Material
+import { CommonModule } from '@angular/common';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module'; 
 import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
 import { catchError, Observable, of } from 'rxjs';

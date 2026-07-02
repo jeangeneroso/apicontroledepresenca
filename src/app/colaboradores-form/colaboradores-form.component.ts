@@ -45,14 +45,23 @@ export class ColaboradoresFormComponent implements OnInit {
   onSubmit() {
     this.service.save(this.form.value).subscribe({
       next: (colaborador) => {
-        console.log('Salvou com sucesso!', colaborador);
+        this.onSucess();
       },
       error: (error) => this.onError()
     });
   }
 
+  private onSucess (){
+
+    this.snackBar.open(' Colaborador cadastrado com sucesso! ' , ' Fechar ', {
+      duration: 5000
+    });
+
+
+  }
+
   private onError() {
-    this.snackBar.open('Erro ao salvar o colaborador', 'Fechar', {
+    this.snackBar.open( ' Erro ao salvar o colaborador ' , ' Fechar ', {
       duration: 5000
     });
   }
