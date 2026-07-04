@@ -35,18 +35,18 @@ export class PresencaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // 1. Inicializando o formulário do Colaborador com os campos corretos
+
     this.formColaborador = this.fb.group({
       data: ['', Validators.required],
-      colaborador: [null, Validators.required], // Receberá o objeto/ID do colaborador selecionado
-      operacao: [null, Validators.required]     // Receberá o objeto/ID da operação selecionada
+      colaborador: ['', Validators.required],
+      operacao: ['', Validators.required]
     });
 
     // 2. Inicializando o formulário do Líder
     this.formLider = this.fb.group({
       data: ['', Validators.required],
-      lider: [null, Validators.required],   // Receberá o objeto/ID do líder selecionado
-      operacao: [null, Validators.required]
+      lider: ['', Validators.required],   // Receberá o objeto/ID do líder selecionado
+      operacao: ['', Validators.required]
     });
 
     // 3. Chamar os métodos para carregar os dados assim que a tela abrir
@@ -74,61 +74,57 @@ export class PresencaComponent implements OnInit {
   }
 
   salvarColaborador() {
-    const dadosForm = this.formColaborador.value;
-    const dadosFormatados = {
-      data: dadosForm.data, // mapeia para o seu getDia/setDia
-      colaborador: { id: dadosForm.colaborador }, // vira o objeto @ManyToOne
-      operacao: { id: dadosForm.operacao } // vira o objeto @ManyToOne
-    };
+    if (this.formColaborador.valid) {
+      const dadosForm = this.formColaborador.value;
 
-    this.presencaService.salvarPresencaColaborador(this.formColaborador.value).subscribe({
-      next: (colaborador) => {
-        console.log('Diaria do colaborador salva com sucesso!', colaborador);
-        this.formColaborador.reset();
-        this.onSucess();
-      },
-      error: (error) => this.onError()
-    });
+      const dadosFormatados = {
+        data: dadosForm.data,
+        colaborador: { 
+          id: Number(dadosForm.colaborador) 
+        },
+        operacao: { 
+          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null 
+        }
+      };
+
+      this.presencaService.salvarPresencaColaborador(dadosFormatados).subscribe({
+        next: (resposta) => {
+          this.formColaborador.reset();
+          this.onSucess();
+        },
+        error: () => this.onError()
+      });
+    }
   }
 
-  /* salvarLider() {
-    const dadosForm = this.formLider.value;
-
-    const dadosFormatados = {
-      data: dadosForm.data,
-      lider: { id: dadosForm.lider.id },
-      operacao: { id: dadosForm.operacao.id }
-    };
-
-    // CORREÇÃO: Passar 'dadosFormatados' em vez de 'this.formLider.value'
-    this.presencaService.salvarPresencaLider(dadosFormatados).subscribe({
-      next: (resposta: any) => {
-        console.log('Diaria do líder salva com sucesso!', resposta);
-        this.formLider.reset();
-        this.onSucess();
-      },
-      error: (error) => this.onError()
-    });
-  } */
-
   salvarLider() {
-    const dadosForm = this.formLider.value;
+    if (this.formLider.valid) {
+      const dadosForm = this.formLider.value;
 
-    const dadosFormatados = {
-      data: dadosForm.data,
-      lider: { id: dadosForm.lider.id },
-      operacao: { id: dadosForm.operacao.id }
-    };
+      // Montando a estrutura que o Jackson mapeia diretamente para @ManyToOne no Java
+      const dadosFormatados = {
+        data: dadosForm.data,
+        // Garantimos que passamos um objeto com a chave id contendo o valor numérico
+        lider: { 
+          id: Number(dadosForm.lider) 
+        },
+        // Como 'operacao' veio como objeto completo (visto no console), pegamos o .id dele
+        operacao: { 
+          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null 
+        }
+      };
 
-    // VEJA SE ESTÁ ASSIM: Você DEVE passar 'dadosFormatados' aqui dentro!
-    this.presencaService.salvarPresencaLider(dadosFormatados).subscribe({
-      next: (resposta: any) => {
-        console.log('Diaria do líder salva com sucesso!', resposta);
-        this.formLider.reset();
-        this.onSucess();
-      },
-      error: (error) => this.onError()
-    });
+      console.log('JSON corrigido indo para o Java:', dadosFormatados);
+
+      this.presencaService.salvarPresencaLider(dadosFormatados).subscribe({
+        next: (resposta: any) => {
+          console.log('Diaria do líder salva com sucesso!', resposta);
+          this.formLider.reset();
+          this.onSucess();
+        },
+        error: (error) => this.onError()
+      });
+    }
   }
 
   compararObjetos(o1: any, o2: any): boolean {

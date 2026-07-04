@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { first, Observable } from 'rxjs';
 import { Colaborador } from '../models/colaborador.model';
 import { Lider } from '../models/lider.model';

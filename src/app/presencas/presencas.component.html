@@ -1,16 +1,10 @@
 <mat-card>
   <div class="container-presenca">
     <div class="abas-nav">
-      <button 
-        type="button" 
-        [class.ativa]="abaAtiva === 'colaborador'" 
-        (click)="trocarAba('colaborador')">
+      <button type="button" [class.ativa]="abaAtiva === 'colaborador'" (click)="trocarAba('colaborador')">
         Diária Colaborador
       </button>
-      <button 
-        type="button" 
-        [class.ativa]="abaAtiva === 'lider'" 
-        (click)="trocarAba('lider')">
+      <button type="button" [class.ativa]="abaAtiva === 'lider'" (click)="trocarAba('lider')">
         Diária Líder
       </button>
     </div>
@@ -19,24 +13,24 @@
   <hr>
 
   <form *ngIf="abaAtiva === 'colaborador'" [formGroup]="formColaborador" (ngSubmit)="salvarColaborador()">
-    <h3>Registro de Diária - Colaborador</h3>
+    <h3> Registro de Diária - Colaborador</h3>
 
     <mat-form-field appearance="fill" class="campo-custom">
-  <mat-label>Data</mat-label>
-  <input matInput [matDatepicker]="pickerColab" formControlName="data">
-  <mat-datepicker-toggle matIconSuffix [for]="pickerColab"></mat-datepicker-toggle>
-  <mat-datepicker #pickerColab></mat-datepicker>
-  <mat-error *ngIf="formColaborador.get('data')?.hasError('required')">
-    A data é obrigatória.
-  </mat-error>
-</mat-form-field>
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="pickerColab" formControlName="data">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerColab"></mat-datepicker-toggle>
+      <mat-datepicker #pickerColab></mat-datepicker>
+      <mat-error *ngIf="formColaborador.get('data')?.hasError('required')">
+        A data é obrigatória.
+      </mat-error>
+    </mat-form-field>
 
     <mat-form-field appearance="fill" class="campo-total">
       <mat-label>Colaborador</mat-label>
       <mat-select formControlName="colaborador">
-        <mat-option [value]="null">Selecione um colaborador</mat-option>
-        <mat-option *ngFor="let colab of listaDeColaboradores" [value]="colab">
-          {{ colab.nome }}
+        <mat-option [value]="null">Selecione o colaborador</mat-option>
+        <mat-option *ngFor="let colab of listaDeColaboradores" [value]="colab.id">
+          {{ colab.nomeColaborador || colab.nome }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formColaborador.get('colaborador')?.hasError('required')">
@@ -48,7 +42,7 @@
       <mat-label>Operação</mat-label>
       <mat-select formControlName="operacao">
         <mat-option [value]="null">Selecione uma operação</mat-option>
-        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
+        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
           {{ op.nome }}
         </mat-option>
       </mat-select>
@@ -68,22 +62,22 @@
   <form *ngIf="abaAtiva === 'lider'" [formGroup]="formLider" (ngSubmit)="salvarLider()">
     <h3>Registro de Diária - Líder</h3>
 
-   <mat-form-field appearance="fill" class="campo-custom">
-  <mat-label>Data</mat-label>
-  <input matInput [matDatepicker]="pickerLider" formControlName="data">
-  <mat-datepicker-toggle matIconSuffix [for]="pickerLider"></mat-datepicker-toggle>
-  <mat-datepicker #pickerLider></mat-datepicker>
-  <mat-error *ngIf="formLider.get('data')?.hasError('required')">
-    A data é obrigatória.
-  </mat-error>
-</mat-form-field>
+    <mat-form-field appearance="fill" class="campo-custom">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="pickerLider" formControlName="data">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerLider"></mat-datepicker-toggle>
+      <mat-datepicker #pickerLider></mat-datepicker>
+      <mat-error *ngIf="formLider.get('data')?.hasError('required')">
+        A data é obrigatória.
+      </mat-error>
+    </mat-form-field>
 
     <mat-form-field appearance="fill" class="campo-total">
       <mat-label>Líder</mat-label>
-      <mat-select formControlName="lider" [compareWith]="compararObjetos">
+      <mat-select formControlName="lider">
         <mat-option [value]="null">Selecione o Líder</mat-option>
-        <mat-option *ngFor="let lid of listaDeLideres" [value]="lid">
-          {{ lid.nome }}
+        <mat-option *ngFor="let lid of listaDeLideres" [value]="lid.id">
+          {{ lid.nomeLider }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formLider.get('lider')?.hasError('required')">
@@ -93,9 +87,9 @@
 
     <mat-form-field appearance="fill" class="campo-total">
       <mat-label>Operação</mat-label>
-      <mat-select formControlName="operacao" [compareWith]="compararObjetos">
+      <mat-select formControlName="operacao">
         <mat-option [value]="null">Selecione uma operação</mat-option>
-        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op">
+        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
           {{ op.nome }}
         </mat-option>
       </mat-select>
