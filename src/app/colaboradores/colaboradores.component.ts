@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module'; 
 import { Colaborador } from '../models/colaborador.model';
 import { ColaboradoresService } from '../services/colaboradores.service';
@@ -33,9 +34,10 @@ export class ColaboradoresComponent implements OnInit {
 
   constructor(
     private colaboradoresService: ColaboradoresService,
-    public dialog: MatDialog,
+    public  dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
 
     this.colaboradores$ = this.colaboradoresService.list().pipe(

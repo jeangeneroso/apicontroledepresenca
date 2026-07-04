@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ColaboradoresService } from '@services/colaboradores.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,7 +29,8 @@ export class ColaboradoresFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private service: ColaboradoresService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location
 
   ) {
 
@@ -64,10 +66,11 @@ export class ColaboradoresFormComponent implements OnInit {
     this.snackBar.open( ' Erro ao salvar o colaborador ' , ' Fechar ', {
       duration: 5000
     });
+    this.onCancel();
   }
 
   onCancel() {
-    throw new Error('Method not implemented.');
+    this.location.back();
   }
 
   ngOnInit(): void {
