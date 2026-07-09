@@ -23,8 +23,16 @@ min-width{
 
 .botoes-container {
   display: flex;
-  justify-content: center; /* Centraliza os botões horizontalmente */
-  gap: 16px;               /* Cria o espaço de separação exato entre eles */
-  margin-top: 24px;        /* Dá um espaço agradável entre os inputs e os botões */
-  width: 100%;             /* Garante que o container use toda a largura disponível */
+  justify-content: space-between;
+  margin-top: 24px; 
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 30px;       
+  margin-top: 24px; 
 }

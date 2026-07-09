@@ -1,10 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
-import { CommonModule } from '@angular/common';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ColaboradoresService } from '@services/colaboradores.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ColaboradoresService } from '@services/colaboradores.service';
+import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 
 @Component({
   selector: 'app-colaboradores-form',
@@ -20,7 +19,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ColaboradoresFormComponent implements OnInit {
 
   form: FormGroup
-  formLider: any;
+  formColaborador: any;
 
   /*  private formBuilder = inject(FormBuilder);
    private service = inject(ColaboradoresService);
@@ -54,11 +53,9 @@ export class ColaboradoresFormComponent implements OnInit {
   }
 
   private onSucess (){
-
     this.snackBar.open(' Colaborador cadastrado com sucesso! ' , ' Fechar ', {
       duration: 5000
     });
-
 
   }
 
