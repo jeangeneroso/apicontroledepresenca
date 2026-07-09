@@ -35,6 +35,10 @@ export const routes: Routes = [
         path: 'diarias', 
         loadChildren: () => import('./diarias/diarias.module').then(m => m.DiariasModule) 
       },
+        { 
+        path: 'operacoes', 
+        loadChildren: () => import('./operacoes/operacoes.module').then(m => m.OperacoesModule) 
+      },
       { 
         path: 'relatorios', 
         loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatorioModule) 
