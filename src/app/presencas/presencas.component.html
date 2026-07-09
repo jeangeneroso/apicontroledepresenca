@@ -77,7 +77,7 @@
       <mat-select formControlName="lider">
         <mat-option [value]="null">Selecione o Líder</mat-option>
         <mat-option *ngFor="let lid of listaDeLideres" [value]="lid.id">
-          {{ lid.nomeLider }}
+          {{ lid.nomeLider|| lid.nome }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formLider.get('lider')?.hasError('required')">

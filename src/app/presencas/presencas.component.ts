@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PresencaService } from 'src/app/services/presenca.service';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-presenca',
@@ -31,7 +32,8 @@ export class PresencaComponent implements OnInit {
   constructor(
     private presencaService: PresencaService,
     private snackBar: MatSnackBar,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -66,7 +68,6 @@ export class PresencaComponent implements OnInit {
     this.listaDeOperacoes = [{ id: 1, nome: 'Operação Logística' }, { id: 2, nome: 'Operação Produção' }];
     this.listaDeLideres = [{ id: 1, nome: 'Carlos Gerente' }, { id: 2, nome: 'Ana Supervisora' }];
 
-
   }
 
   trocarAba(aba: string) {
@@ -76,21 +77,20 @@ export class PresencaComponent implements OnInit {
   salvarColaborador() {
     if (this.formColaborador.valid) {
       const dadosForm = this.formColaborador.value;
-
       const dadosFormatados = {
         data: dadosForm.data,
-        colaborador: { 
-          id: Number(dadosForm.colaborador) 
+        colaborador: {
+          id: Number(dadosForm.colaborador)
         },
-        operacao: { 
-          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null 
+        operacao: {
+          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null
         }
       };
 
       this.presencaService.salvarPresencaColaborador(dadosFormatados).subscribe({
-        next: (resposta) => {
+        next: () => {
           this.formColaborador.reset();
-          this.onSucess();
+          this.onSucess("voltar");
         },
         error: () => this.onError()
       });
@@ -100,17 +100,13 @@ export class PresencaComponent implements OnInit {
   salvarLider() {
     if (this.formLider.valid) {
       const dadosForm = this.formLider.value;
-
-      // Montando a estrutura que o Jackson mapeia diretamente para @ManyToOne no Java
       const dadosFormatados = {
         data: dadosForm.data,
-        // Garantimos que passamos um objeto com a chave id contendo o valor numérico
-        lider: { 
-          id: Number(dadosForm.lider) 
+        lider: {
+          id: Number(dadosForm.lider)
         },
-        // Como 'operacao' veio como objeto completo (visto no console), pegamos o .id dele
-        operacao: { 
-          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null 
+        operacao: {
+          id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null
         }
       };
 
@@ -120,7 +116,7 @@ export class PresencaComponent implements OnInit {
         next: (resposta: any) => {
           console.log('Diaria do líder salva com sucesso!', resposta);
           this.formLider.reset();
-          this.onSucess();
+          this.onSucess("voltar");
         },
         error: (error) => this.onError()
       });
@@ -131,20 +127,24 @@ export class PresencaComponent implements OnInit {
     return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
 
-  private onSucess() {
+  private onSucess(acao: 'voltar' | 'permanecer' = 'permanecer') {
 
-    this.snackBar.open(' Colaborador cadastrado com sucesso! ', ' Fechar ', {
-      duration: 5000
+    this.snackBar.open(' Diaria cadastrada com sucesso! ', ' Fechar ', {
+      duration: 3000
     });
+
+    if (acao === 'voltar') {
+    this.onCancel();
+    }
   }
 
   private onError() {
-    this.snackBar.open(' Erro ao salvar o colaborador ', ' Fechar ', {
+    this.snackBar.open(' Erro ao salvar a diaria ', ' Fechar ', {
       duration: 5000
     });
   }
 
   onCancel() {
-    throw new Error('Method not implemented.');
+    this.router.navigate(['/diarias']);
   }
 }

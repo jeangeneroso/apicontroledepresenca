@@ -5,11 +5,11 @@ import { Colaborador } from '../models/colaborador.model';
 import { Lider } from '../models/lider.model';
 
 @Injectable({
-  providedIn: 'root' 
+  providedIn: 'root'
 })
 export class PresencaService {
 
-  private readonly API = '/api/presencas'
+  private readonly API = 'http://localhost:8080/api/presencas';
 
   constructor(private http: HttpClient) { }
 
