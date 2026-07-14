@@ -19,6 +19,10 @@ export const routes: Routes = [
         path: 'presenca', 
         loadChildren: () => import('./presencas/presencas.module').then(m => m.PresencaModule) 
       },
+       { 
+        path: 'extra', 
+        loadChildren: () => import('./extra/extra.module').then(m => m.ExtraModule) 
+      },
       { 
         path: 'colaboradores', 
         loadChildren: () => import('./colaboradores/colaboradores.module').then(m => m.ColaboradoresModule) 

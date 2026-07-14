@@ -1,0 +1,134 @@
+<mat-card>
+  <div class="container-presenca">
+    <div class="abas-nav">
+      <button type="button" [class.ativa]="abaAtiva === 'colaborador'" (click)="trocarAba('colaborador')">
+        Extra Colaborador
+      </button>
+      <button type="button" [class.ativa]="abaAtiva === 'lider'" (click)="trocarAba('lider')">
+        Extra Líder
+      </button>
+    </div>
+  </div>
+
+  <hr>
+
+  <form *ngIf="abaAtiva === 'colaborador'" [formGroup]="formColaborador" (ngSubmit)="salvarHoraExtraColaborador()">
+    <h3> Registro de Hora Extra - Colaborador</h3>
+
+    <mat-form-field appearance="fill" class="campo-custom">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="pickerColab" formControlName="data">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerColab"></mat-datepicker-toggle>
+      <mat-datepicker #pickerColab></mat-datepicker>
+      <mat-error *ngIf="formColaborador.get('data')?.hasError('required')">
+        A data é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Colaborador</mat-label>
+      <mat-select formControlName="colaborador">
+        <mat-option [value]="null">Selecione o colaborador</mat-option>
+        <mat-option *ngFor="let colab of listaDeColaboradores" [value]="colab.id">
+          {{ colab.nomeColaborador || colab.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formColaborador.get('colaborador')?.hasError('required')">
+        O colaborador é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Operação</mat-label>
+      <mat-select formControlName="operacao">
+        <mat-option [value]="null">Selecione uma operação</mat-option>
+        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
+          {{ op.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formColaborador.get('operacao')?.hasError('required')">
+        A operação é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Hora Extra</mat-label>
+      <mat-select formControlName="hora">
+        <mat-option [value]="null">Selecione a quantidade de horas extras</mat-option>
+        <mat-option *ngFor="let hr of listaDeHoras" [value]="hr.id">
+          {{ hr.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formColaborador.get('hora')?.hasError('required')">
+        A quantidade de hora é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary" [disabled]="formColaborador.invalid">
+        Enviar Hora Extra Colaborador
+      </button>
+      <button mat-raised-button type="button" (click)="onCancel()">Cancelar</button>
+    </mat-card-actions>
+  </form>
+
+  <form *ngIf="abaAtiva === 'lider'" [formGroup]="formLider" (ngSubmit)="salvarHoraExtraLider()">
+    <h3>Registro de Hora Extra - Líder</h3>
+
+    <mat-form-field appearance="fill" class="campo-custom">
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="pickerLider" formControlName="data">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerLider"></mat-datepicker-toggle>
+      <mat-datepicker #pickerLider></mat-datepicker>
+      <mat-error *ngIf="formLider.get('data')?.hasError('required')">
+        A data é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Líder</mat-label>
+      <mat-select formControlName="lider">
+        <mat-option [value]="null">Selecione o Líder</mat-option>
+        <mat-option *ngFor="let lid of listaDeLideres" [value]="lid.id">
+          {{ lid.nomeLider|| lid.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formLider.get('lider')?.hasError('required')">
+        O líder é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Operação</mat-label>
+      <mat-select formControlName="operacao">
+        <mat-option [value]="null">Selecione uma operação</mat-option>
+        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
+          {{ op.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formLider.get('operacao')?.hasError('required')">
+        A operação é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+     <mat-form-field appearance="fill" class="campo-total">
+      <mat-label>Hora Extra</mat-label>
+      <mat-select formControlName="hora">
+        <mat-option [value]="null">Selecione a quantidade de horas extras</mat-option>
+        <mat-option *ngFor="let hr of listaDeHoras" [value]="hr.id">
+          {{ hr.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formLider.get('hora')?.hasError('required')">
+        A quantidade de hora é obrigatória.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-raised-button type="submit" color="primary" [disabled]="formLider.invalid">
+        Enviar Hora Extra Líder
+      </button>
+      <button mat-raised-button type="button" (click)="onCancel()">Cancelar</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
