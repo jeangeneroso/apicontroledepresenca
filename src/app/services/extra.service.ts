@@ -1,9 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { first, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExtraService {
 
-  constructor() { }
+    private readonly API = 'http://localhost:8080/api/extras';
+
+    constructor(private http: HttpClient) { }
+
+    salvarHoraExtraColaborador(colaborador: any): Observable<any> {
+       return this.http.post<any>(`${this.API}/colaborador`, colaborador).pipe(first());
+  }
+
+   salvarHoraExtraLider(lider: any): Observable<any> {
+       return this.http.post<any>(`${this.API}/lider`, lider).pipe(first());
+  }
+
 }
