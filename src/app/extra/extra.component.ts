@@ -80,9 +80,10 @@ export class ExtraComponent implements OnInit {
         operacao: {
           id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null
         },
-        hora: {
+       /*  hora: {
           id: dadosForm.hora && dadosForm.hora.id ? Number(dadosForm.hora.id) : null
-        }
+        } */
+       hora: dadosForm.hora ? Number(String(dadosForm.hora.id || dadosForm.hora).split(':')[0]) : null
       };
 
       console.log('JSON corrigido indo para o Java:', dadosFormatados);
@@ -108,9 +109,10 @@ export class ExtraComponent implements OnInit {
         operacao: {
           id: dadosForm.operacao && dadosForm.operacao.id ? Number(dadosForm.operacao.id) : null
         },
-        hora: {
+        /* hora: {
           id: dadosForm.hora && dadosForm.hora.id ? Number(dadosForm.hora.id) : null
-        }
+        } */
+       hora: dadosForm.hora ? Number(String(dadosForm.hora.id || dadosForm.hora).split(':')[0]) : null
       };
 
       console.log('JSON corrigido indo para o Java:', dadosFormatados);
@@ -124,13 +126,13 @@ export class ExtraComponent implements OnInit {
         error: (error) => this.onError()
       });
     }
-  }
+    }
 
-  compararObjetos(o1: any, o2: any): boolean {
-    return o1 && o2 ? o1.id === o2.id : o1 === o2;
-  }
+    compararObjetos(o1: any, o2: any): boolean {
+      return o1 && o2 ? o1.id === o2.id : o1 === o2;
+    }
 
-  private onSucess(acao: 'voltar' | 'permanecer' = 'permanecer') {
+private onSucess(acao: 'voltar' | 'permanecer' = 'permanecer') {
 
     this.snackBar.open(' Hora extra cadastrada com sucesso! ', ' Fechar ', {
       duration: 2500
@@ -148,7 +150,7 @@ export class ExtraComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/extra']);
+    this.router.navigate(['/diarias']);
   }
 
 
