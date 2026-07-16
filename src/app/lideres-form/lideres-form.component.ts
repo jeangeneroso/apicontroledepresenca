@@ -49,14 +49,14 @@ export class LideresFormComponent implements OnInit {
 
   private onSucess() {
     this.snackBar.open(' Lider cadastrado com sucesso! ', ' Fechar ', {
-      duration: 5000
+      duration: 2500
     });
-    
+     this.onCancel();
   }
 
   private onError() {
     this.snackBar.open(' Erro ao salvar o lider ', ' Fechar ', {
-      duration: 5000
+      duration: 2500
     });
     this.onCancel();
   }

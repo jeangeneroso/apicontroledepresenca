@@ -8,13 +8,16 @@ import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CompartilhadoListComponent } from '../compartilhado/compartilhado-list/compartilhado-list.component';
+
 
 @Component({
   selector: 'app-colaboradores',
   standalone: true,
   imports: [
     CommonModule,
-    AppMarterialModule
+    AppMarterialModule,
+    CompartilhadoListComponent,
   ],
   templateUrl: './colaboradores.component.html',
   styleUrls: ['./colaboradores.component.css']

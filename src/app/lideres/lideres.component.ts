@@ -7,6 +7,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../compartilhado/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CompartilhadoListComponent } from '../compartilhado/compartilhado-list/compartilhado-list.component';
 
 
 @Component({
@@ -14,7 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
-    AppMarterialModule
+    AppMarterialModule,
+    CompartilhadoListComponent,
   ],
   templateUrl: './lideres.component.html',
   styleUrls: ['./lideres.component.css']

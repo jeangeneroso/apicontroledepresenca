@@ -5,6 +5,7 @@ import { ColaboradoresComponent } from './colaboradores.component';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CompartilhadoListComponent } from '../compartilhado/compartilhado-list/compartilhado-list.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppMarterialModule,
     MatDialogModule,
     CompartilhadoModule,
-    ColaboradoresComponent
+    ColaboradoresComponent,
+    CompartilhadoListComponent,
 
   ]
 })

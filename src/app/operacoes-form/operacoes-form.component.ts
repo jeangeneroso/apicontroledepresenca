@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { OperacoesService } from '@services/operacoes.service';
@@ -9,6 +9,7 @@ import { OperacoesService } from '@services/operacoes.service';
   selector: 'app-operacoes-form',
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ...AppMarterialModule,
   ],
   templateUrl: './operacoes-form.component.html',
@@ -16,52 +17,55 @@ import { OperacoesService } from '@services/operacoes.service';
 })
 export class OperacoesFormComponent implements OnInit {
 
-  form: FormGroup
-  formOperacao: any;
+   form = this.formBuilder.group({
+
+      nomeOperacao: [''],
+
+    });
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: OperacoesService,
     private snackBar: MatSnackBar,
     private location: Location
 
-  ) {
+  ) { 
 
-    this.form = this.formBuilder.group({
-
-      nomeOperacao: [],
-
-    });
-
-  }
-onSubmit() {
-    this.service.save(this.form.value).subscribe({
-      next: (operacao) => {
-        this.onSucess();
-      },
-      error: (error) => this.onError()
-    });
-  }
-
-  private onSucess (){
-    this.snackBar.open(' Operacao cadastrada com sucesso! ' , ' Fechar ', {
-      duration: 5000
-    });
-
-  }
-
-  private onError() {
-    this.snackBar.open( ' Erro ao salvar a operacao' , ' Fechar ', {
-      duration: 5000
-    });
-    this.onCancel();
-  }
-
-  onCancel() {
-    this.location.back();
   }
 
   ngOnInit(): void {
 
   }
+
+  onSubmit(): void {
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.service.save(this.form.getRawValue()).subscribe({
+      next: () => {
+        this.onSucess();
+      },
+      error: () => this.onError()
+    });
   }
+
+  private onSucess(): void {
+    this.snackBar.open(' Operacao cadastrada com sucesso! ', ' Fechar ', {
+      duration: 2500
+    });
+    this.onCancel();
+  }
+
+  private onError(): void {
+    this.snackBar.open(' Erro ao salvar a operacao', ' Fechar ', {
+      duration: 2500
+    });
+    this.onCancel();
+  }
+
+  onCancel(): void {
+    this.location.back();
+  }
+}
+

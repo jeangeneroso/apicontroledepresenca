@@ -52,16 +52,16 @@ export class ColaboradoresFormComponent implements OnInit {
     });
   }
 
-  private onSucess (){
-    this.snackBar.open(' Colaborador cadastrado com sucesso! ' , ' Fechar ', {
-      duration: 5000
+  private onSucess() {
+    this.snackBar.open(' Colaborador cadastrado com sucesso! ', ' Fechar ', {
+      duration: 2500
     });
-
+    this.onCancel();
   }
 
   private onError() {
-    this.snackBar.open( ' Erro ao salvar o colaborador ' , ' Fechar ', {
-      duration: 5000
+    this.snackBar.open(' Erro ao salvar o colaborador ', ' Fechar ', {
+      duration: 2500
     });
     this.onCancel();
   }

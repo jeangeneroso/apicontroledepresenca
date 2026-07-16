@@ -145,7 +145,7 @@ private onSucess(acao: 'voltar' | 'permanecer' = 'permanecer') {
 
   private onError() {
     this.snackBar.open(' Erro ao salvar hora extra ', ' Fechar ', {
-      duration: 3500
+      duration: 2500
     });
   }
 

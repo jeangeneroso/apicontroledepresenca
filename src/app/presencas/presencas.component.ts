@@ -130,7 +130,7 @@ export class PresencaComponent implements OnInit {
   private onSucess(acao: 'voltar' | 'permanecer' = 'permanecer') {
 
     this.snackBar.open(' Diaria cadastrada com sucesso! ', ' Fechar ', {
-      duration: 3000
+      duration: 2500
     });
 
     if (acao === 'voltar') {
@@ -140,7 +140,7 @@ export class PresencaComponent implements OnInit {
 
   private onError() {
     this.snackBar.open(' Erro ao salvar a diaria ', ' Fechar ', {
-      duration: 5000
+      duration: 2500
     });
   }
 

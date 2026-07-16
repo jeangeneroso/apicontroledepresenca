@@ -6,6 +6,7 @@ import { LideresComponent } from './lideres.component';
 import { AppMarterialModule } from '../compartilhado/app-material/app-material.module';
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CompartilhadoListComponent } from '../compartilhado/compartilhado-list/compartilhado-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppMarterialModule,
     MatDialogModule,
     CompartilhadoModule,
-    LideresComponent
+    LideresComponent,
+    CompartilhadoListComponent
   ]
 })
 
