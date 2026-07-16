@@ -1,1 +1,23 @@
-<p>operacoes-form works!</p>
+<mat-card>
+
+    <mat-card-header>
+        <mat-card-title-group>
+            <mat-card-title> Cadastro Operacao </mat-card-title>
+            <img mat-card-sm-image src="assets/GN_logo.jpg">
+        </mat-card-title-group>
+    </mat-card-header>
+
+    <form [formGroup]="form">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label> Nome da Operacao </mat-label>
+            <input matInput placeholder=" Nome da Operacao " formControlName="nomeOperacao">
+        </mat-form-field>
+
+        <mat-card-actions>
+            <button mat-raised-button type="button" color="primary" (click)="onSubmit()"> Salvar </button>
+            <button mat-raised-button (click)="onCancel()"> Cancelar </button>
+        </mat-card-actions>
+
+    </form>
+
+</mat-card>
