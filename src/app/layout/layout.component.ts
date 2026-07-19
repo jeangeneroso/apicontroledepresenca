@@ -1,5 +1,5 @@
-import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { AppMarterialModule } from "../compartilhado/app-material/app-material.module";
 
 
@@ -11,8 +11,15 @@ import { AppMarterialModule } from "../compartilhado/app-material/app-material.m
   // NÃO pode ter a linha "standalone: true" aqui!
   // NÃO pode ter a linha "imports: [...]" aqui!
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit  {
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
   deslogar() {
-    console.log('Usuário saiu');
+    this.router.navigate(['/login']);
   }
 }
