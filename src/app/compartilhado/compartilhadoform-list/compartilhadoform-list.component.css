@@ -1,0 +1,38 @@
+mat-card{
+    max-width: 80%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column; /* Força os campos a caírem para a próxima linha */
+  gap: 16px;             /* Cria um espaçamento vertical agradável entre os campos */
+  padding: 16px;          /* Afasta os campos das bordas do card */
+}
+
+full-width{
+    width: 100%;
+}
+
+min-width{
+    width: 100%;
+    min-width: 150%;
+}
+
+
+.botoes-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px; 
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 30px;       
+  margin-top: 24px; 
+}

@@ -1,0 +1,64 @@
+mat-card {
+  display: block; /* Garante o comportamento correto do card dentro do flex */
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Se a tela for pequena, adiciona barra de rolagem SÓ no card, sem quebrar o menu */
+}
+
+/* Faz a tabela esticar para ocupar 100% do tamanho do card */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent !important; /* Remove sombras duplicadas se houver */
+}
+
+/* Alinha o texto do cabeçalho da tabela para ficar bonito */
+th.mat-mdc-header-cell {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+td.mat-mdc-cell {
+  padding: 12px 4px; 
+}
+
+.loagind-spinner{
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Garante que o texto e o ícone fiquem na mesma linha e centralizados */
+/* Atualize a classe do conteúdo do cabeçalho */
+.header-conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Força o alinhamento total à esquerda */
+  gap: 8px; /* Espaço fixo entre o texto e o ícone */
+  width: 100%;
+}
+
+/* Ajuste fino nos paddings das células para alinhar cabeçalho e dados */
+th.mat-mdc-header-cell, 
+td.mat-mdc-cell {
+  padding: 12px 16px !important; /* Aumenta o padding lateral padrão para dar respiro */
+  text-align: left !important;   /* Garante que ambos comecem no mesmo ponto */
+}
+
+/* Remove qualquer margem que o ícone possa herdar e quebrar o alinhamento */
+.header-conteudo mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0; 
+  display: inline-block;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
