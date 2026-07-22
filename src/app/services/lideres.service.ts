@@ -24,6 +24,10 @@ export class LideresService {
               
   }
 
+   loadById(id: string){
+      return this.httpClient.get<Lider>('${this.API/${id}');
+    }
+
   save(lider: Lider) : Observable<Lider>{
    return this.httpClient.post<Lider>(this.API,lider).pipe((first()));
   }

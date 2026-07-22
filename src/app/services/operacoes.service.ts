@@ -20,6 +20,10 @@ export class OperacoesService {
       );
   }
 
+   loadById(id: string){
+      return this.httpClient.get<Operacao>('${this.API/${id}');
+    }
+
     save(operacao: Operacao) : Observable<Operacao>{
          return this.httpClient.post<Operacao>(this.API, operacao).pipe((first()));
   }

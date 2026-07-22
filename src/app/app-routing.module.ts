@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { LayoutComponent } from './layout/layout.component';
+import { LayoutComponent } from './componentes/layout/layout.component';
 
 export const routes: Routes = [
   // 1. ROTA INICIAL: Quando abrir o site, redireciona direto para o login
@@ -17,35 +17,35 @@ export const routes: Routes = [
     children: [
       { 
         path: 'presenca', 
-        loadChildren: () => import('./presencas/presencas.module').then(m => m.PresencaModule) 
+        loadChildren: () => import('./componentes/presencas/presencas.module').then(m => m.PresencaModule) 
       },
        { 
         path: 'extra', 
-        loadChildren: () => import('./extra/extra.module').then(m => m.ExtraModule) 
+        loadChildren: () => import('./componentes/extra/extra.module').then(m => m.ExtraModule) 
       },
       { 
         path: 'colaboradores', 
-        loadChildren: () => import('./colaboradores/colaboradores.module').then(m => m.ColaboradoresModule) 
+        loadChildren: () => import('./componentes/colaboradores/colaboradores.module').then(m => m.ColaboradoresModule) 
       },
       { 
         path: 'lideres', 
-        loadChildren: () => import('./lideres/lideres.module').then(m => m.LideresModule) 
+        loadChildren: () => import('./componentes/lideres/lideres.module').then(m => m.LideresModule) 
       },
       { 
         path: 'aprovacoes', 
-        loadChildren: () => import('./aprovacoes/aprovacoes.module').then(m => m.AprovacoesModule) 
+        loadChildren: () => import('./componentes/aprovacoes/aprovacoes.module').then(m => m.AprovacoesModule) 
       },
        { 
         path: 'diarias', 
-        loadChildren: () => import('./diarias/diarias.module').then(m => m.DiariasModule) 
+        loadChildren: () => import('./componentes/diarias/diarias.module').then(m => m.DiariasModule) 
       },
         { 
         path: 'operacoes', 
-        loadChildren: () => import('./operacoes/operacoes.module').then(m => m.OperacoesModule) 
+        loadChildren: () => import('./componentes/operacoes/operacoes.module').then(m => m.OperacoesModule) 
       },
       { 
         path: 'relatorios', 
-        loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatorioModule) 
+        loadChildren: () => import('./componentes/relatorios/relatorios.module').then(m => m.RelatorioModule) 
       }
     ]
   },
