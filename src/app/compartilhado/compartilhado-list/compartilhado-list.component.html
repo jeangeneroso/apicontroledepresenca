@@ -1,1 +1,68 @@
-<p>compartilhado-list works!</p>
+<mat-table [dataSource]="listaTabela" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>
+      <span class="header-conteudo">
+        ID <mat-icon>account_box</mat-icon>
+      </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="nomeColaborador">
+    <mat-header-cell *matHeaderCellDef> 
+      <span class="header-conteudo">
+        Nome
+      <mat-icon>person</mat-icon>
+      </span>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let colaborador">
+      {{colaborador.nomeColaborador || colaborador.nomeLider }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="rgColaborador">
+    <mat-header-cell *matHeaderCellDef> RG
+      <mat-icon>pin</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let colaborador"> {{colaborador.rgColaborador || colaborador.rgLider}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cpfColaborador">
+    <mat-header-cell *matHeaderCellDef> CPF
+      <mat-icon>subtitles</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let colaborador"> {{colaborador.cpfColaborador || colaborador.cpfLider}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="chavePix">
+    <mat-header-cell *matHeaderCellDef> Chave PIX
+      <mat-icon>key</mat-icon>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let colaborador"> {{colaborador.chavePix || colaborador.chavePix}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acoes">
+    <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+    <mat-cell *matCellDef="let colaborador">
+
+      <button mat-icon-button (click)="edit(colaborador)" class="botao-editar" title="Editar">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button (click)="delete(colaborador)" class="botao-excluir" title="Excluir">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+
+
+      
+     
+

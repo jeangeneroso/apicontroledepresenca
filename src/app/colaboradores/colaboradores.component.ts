@@ -26,15 +26,6 @@ export class ColaboradoresComponent implements OnInit {
 
   colaboradores$: Observable<Colaborador[]>;
 
-  displayedColumns: string[] = [
-    'id',
-    'nomeColaborador',
-    'rgColaborador',
-    'cpfColaborador',
-    'chavePix',
-    'acoes'
-  ];
-
   constructor(
     private colaboradoresService: ColaboradoresService,
     public  dialog: MatDialog,

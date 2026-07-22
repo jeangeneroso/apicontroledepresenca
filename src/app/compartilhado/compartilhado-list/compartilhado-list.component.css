@@ -7,21 +7,14 @@ mat-card {
   overflow-x: auto; /* Se a tela for pequena, adiciona barra de rolagem SÓ no card, sem quebrar o menu */
 }
 
-/* Faz a tabela esticar para ocupar 100% do tamanho do card */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: transparent !important; /* Remove sombras duplicadas se houver */
-}
-
 /* Alinha o texto do cabeçalho da tabela para ficar bonito */
-th.mat-mdc-header-cell {
+mat-mdc-header-cell {
   font-weight: bold;
   color: #333;
   font-size: 14px;
 }
 
-td.mat-mdc-cell {
+mat-mdc-cell {
   padding: 12px 4px; 
 }
 
