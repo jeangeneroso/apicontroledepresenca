@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Colaborador } from 'src/app/models/colaborador.model'
+import { Colaborador } from '../../models/colaborador.model'
 import { AppMarterialModule } from '../app-material/app-material.module';
-import { Lider } from 'src/app/models/lider.model';
+// Exemplo: se você estiver em 'src/app/componentes/compartilhado-list'
+import { Lider } from '../../models/lider.model';
 
 @Component({
   selector: 'app-compartilhado-list',
@@ -22,6 +23,8 @@ export class CompartilhadoListComponent implements OnInit {
     return [...this.colaboradores, ...this.lideres];
   }
 
+  @Output() inclui = new EventEmitter<boolean>();
+
   displayedColumns: string[] = [
     'id',
     'nomeColaborador',
@@ -31,13 +34,11 @@ export class CompartilhadoListComponent implements OnInit {
     'acoes'
   ];
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-  ) { }
+  constructor() { }
 
   incluir() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.inclui.emit(true);
+
   }
 
   edit(colaborador: any) {

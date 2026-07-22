@@ -1,10 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@services/*": ["src/app/services/*"]
-    },
     "outDir": "./dist/out-tsc",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
@@ -16,10 +12,16 @@
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+
+    /* CONFIGURAÇÕES MODERNAS DE RESOLUÇÃO */
+    "moduleResolution": "bundler",
+    "paths": {
+      "@services/*": ["./src/app/services/*"]
+    },
+
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
