@@ -58,11 +58,11 @@ export class LideresComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  edit(lider: any) {
-    console.log('Editando o lider:', lider);
+  edit(lider: Lider) {
+    this.router.navigate(['edit', lider.id], { relativeTo: this.route });
   }
 
-  delete(lider: any) {
+  delete(lider: Lider) {
     console.log('Excluindo o lider:', lider);
   }
 
