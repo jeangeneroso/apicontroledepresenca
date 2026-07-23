@@ -11,21 +11,25 @@ export class LideresService {
 
   private readonly API = '/api/lideres'
 
-  constructor( private httpClient:HttpClient ) { }
+  constructor(private httpClient: HttpClient) { }
 
   list() {
 
 
     return this.httpClient.get<Lider[]>(this.API)
-          .pipe(
-            first(),
-            tap(lideres => console.log(lideres))
-          );
-              
+      .pipe(
+        first(),
+        tap(lideres => console.log(lideres))
+      );
+
   }
 
-  save(lider: Lider) : Observable<Lider>{
-   return this.httpClient.post<Lider>(this.API,lider).pipe((first()));
+  loadById(id: string | number) {
+    return this.httpClient.get<Lider>(`${this.API}/${id}`);
+  }
+
+  save(lider: Lider): Observable<Lider> {
+    return this.httpClient.post<Lider>(this.API, lider).pipe((first()));
   }
 
 

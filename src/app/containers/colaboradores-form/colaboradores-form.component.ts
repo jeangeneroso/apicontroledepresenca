@@ -21,10 +21,6 @@ export class ColaboradoresFormComponent implements OnInit {
   form: FormGroup
   formColaborador: any;
 
-  /*  private formBuilder = inject(FormBuilder);
-   private service = inject(ColaboradoresService);
-   private snackBar = inject(MatSnackBar); */
-
   constructor(
     private formBuilder: FormBuilder,
     private service: ColaboradoresService,

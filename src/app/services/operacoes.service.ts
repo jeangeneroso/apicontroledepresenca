@@ -20,8 +20,12 @@ export class OperacoesService {
       );
   }
 
-    save(operacao: Operacao) : Observable<Operacao>{
-         return this.httpClient.post<Operacao>(this.API, operacao).pipe((first()));
+  loadById(id: string | number) {
+    return this.httpClient.get<Operacao>(`${this.API}/${id}`);
+  }
+
+  save(operacao: Operacao): Observable<Operacao> {
+    return this.httpClient.post<Operacao>(this.API, operacao).pipe((first()));
   }
 
 }

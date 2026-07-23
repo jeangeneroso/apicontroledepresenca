@@ -25,6 +25,15 @@ export class CompartilhadoListComponent implements OnInit {
 
   @Output() inclui = new EventEmitter<boolean>();
 
+  /*  @Output() edita = new EventEmitter<Colaborador>(); */
+
+  @Output() edita = new EventEmitter<any>();
+
+  /* @Output() deleta = new EventEmitter<Colaborador>(); */
+
+  @Output() deleta = new EventEmitter<any>();
+
+
   displayedColumns: string[] = [
     'id',
     'nomeColaborador',
@@ -34,25 +43,35 @@ export class CompartilhadoListComponent implements OnInit {
     'acoes'
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   incluir() {
     this.inclui.emit(true);
 
   }
 
-  edit(colaborador: any) {
-    console.log('Editando o colaborador:', colaborador);
+  /* editar(colaborador: Colaborador) {
+    this.edita.emit(colaborador);
+
+  } */
+
+  editar(item: any) {
+    this.edita.emit(item);
   }
 
-  delete(colaborador: any) {
-    console.log('Excluindo o colaborador:', colaborador);
-  }
+  /*  delete(colaborador: Colaborador) {
+     this.deleta.emit(colaborador);
+   } */
 
+  delete(item: any) {
+    this.deleta.emit(item);
+  }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
+  }
 
 }

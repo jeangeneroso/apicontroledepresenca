@@ -23,8 +23,12 @@ export class ColaboradoresService {
 
   }
 
-  save(colaborador: Colaborador) : Observable<Colaborador>{
-   return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
+  loadById(id: string | number) {
+    return this.httpClient.get<Colaborador>(`${this.API}/${id}`);
+  }
+
+  save(colaborador: Colaborador): Observable<Colaborador> {
+    return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
   }
 
 }
