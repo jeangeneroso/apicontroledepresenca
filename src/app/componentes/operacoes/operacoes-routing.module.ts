@@ -4,6 +4,7 @@ import { OperacoesComponent } from './operacoes.component';
 import { OperacoesFormComponent } from '../../containers/operacoes-form/operacoes-form.component';
 import { operacoesResolver } from '../../guards/operacoes.resolver';
 
+
 const routes: Routes = [
 
   { path: '', component: OperacoesComponent },
