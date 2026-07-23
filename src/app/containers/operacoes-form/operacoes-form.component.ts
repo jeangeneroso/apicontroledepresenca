@@ -18,10 +18,9 @@ import { OperacoesService } from '@services/operacoes.service';
 export class OperacoesFormComponent implements OnInit {
 
    form = this.formBuilder.group({
-
-      nomeOperacao: [''],
-
-    });
+    id: [0],
+    nomeOperacao: [''],
+  });
 
   constructor(
     private formBuilder: NonNullableFormBuilder,

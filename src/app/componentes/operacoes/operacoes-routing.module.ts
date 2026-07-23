@@ -9,7 +9,7 @@ const routes: Routes = [
 
   { path: '', component: OperacoesComponent },
   { path: 'new', component: OperacoesFormComponent },
-  { path: 'edit/:id', component: OperacoesFormComponent, resolve: {Operacao:operacoesResolver}
+  { path: 'edit/:id', component: OperacoesFormComponent, resolve: {Operacao:operacoesResolver}}
 
 ];
 
