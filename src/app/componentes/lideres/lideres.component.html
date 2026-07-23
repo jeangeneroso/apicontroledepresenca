@@ -10,7 +10,7 @@
   </mat-toolbar>
 
   <app-compartilhado-list *ngIf="lideres$ | async as lideres; else loading"  [lideres]="lideres"
-    (inclui)="(incluir)"> </app-compartilhado-list>
+    (inclui)="incluir()" (edita)="edit($event)" (deleta)="delete($event)"> </app-compartilhado-list>
   
   <ng-template #loading>
     <div class="loagind-spinner">
