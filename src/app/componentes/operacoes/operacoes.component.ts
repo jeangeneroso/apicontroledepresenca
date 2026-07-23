@@ -41,7 +41,7 @@ export class OperacoesComponent {
         console.error('O Java deu erro! Detalhes:', error);
 
         setTimeout(() => {
-          this.openError('Erro ao carregar colaboradores da base de dados.');
+          this.openError('Erro ao carregar operacoes da base de dados.');
         }, 0);
 
         return of([]);
@@ -54,11 +54,11 @@ export class OperacoesComponent {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  edit(operacao: any) {
-    console.log('Editando a operacao:', operacao);
+  edit(operacao: Operacao) {
+    this.router.navigate(['edit', operacao.id], { relativeTo: this.route });
   }
 
-  delete(operacao: any) {
+  delete(operacao: Operacao) {
     console.log('Excluindo a operacao:', operacao);
   }
 

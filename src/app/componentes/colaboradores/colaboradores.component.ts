@@ -52,11 +52,11 @@ export class ColaboradoresComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
   
-  edit(colaborador: any) {
-    console.log('Editando o colaborador:', colaborador);
+  edit(colaborador: Colaborador) {
+     this.router.navigate(['edit', colaborador.id], { relativeTo: this.route });
   }
 
-  delete(colaborador: any) {
+  delete(colaborador: Colaborador) {
     console.log('Excluindo o colaborador:', colaborador);
   }
 
