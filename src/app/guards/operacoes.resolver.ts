@@ -6,7 +6,7 @@ import { Operacao } from '../models/operacao.model';
 import { OperacoesService } from '@services/operacoes.service';
 
 
-export const operacoesResolver: ResolveFn<Operacao> = (
+export const OperacoesResolver: ResolveFn<Operacao> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): Observable<Operacao> => {

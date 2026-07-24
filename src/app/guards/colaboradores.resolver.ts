@@ -4,7 +4,7 @@ import { ColaboradoresService } from '@services/colaboradores.service';
 import { Observable, of } from 'rxjs';
 import { Colaborador } from '../../app/models/colaborador.model';
 
-export const colaboradoresResolver: ResolveFn<Colaborador> = (
+export const ColaboradoresResolver: ResolveFn<Colaborador> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): Observable<Colaborador> => {

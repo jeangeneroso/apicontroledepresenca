@@ -4,7 +4,7 @@ import { LideresService } from '@services/lideres.service';
 import { Observable, of } from 'rxjs';
 import { Lider } from '../models/lider.model';
 
-export const lideresResolver: ResolveFn<Lider> = (
+export const LideresResolver: ResolveFn<Lider> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): Observable<Lider> => {
