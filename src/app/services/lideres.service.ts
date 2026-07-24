@@ -29,8 +29,21 @@ export class LideresService {
   }
 
   save(lider: Lider): Observable<Lider> {
+    if(lider.id){
+      return this.update(lider)
+    }
+
+    return this.created(lider)
+  }
+
+  private created(lider: Lider) {
     return this.httpClient.post<Lider>(this.API, lider).pipe((first()));
   }
 
+  private update(lider: Lider) {
+    return this.httpClient.put<Lider>(`${this.API}/${lider.id}`, lider).pipe((first()));
+  }
 
 }
+
+
