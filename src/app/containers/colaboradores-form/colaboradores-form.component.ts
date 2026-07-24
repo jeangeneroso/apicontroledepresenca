@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ColaboradoresService } from '@services/colaboradores.service';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
+import { ActivatedRoute } from '@angular/router';
+import { Colaborador } from '../../models/colaborador.model';
 
 @Component({
   selector: 'app-colaboradores-form',
@@ -25,17 +27,34 @@ export class ColaboradoresFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: ColaboradoresService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private router: ActivatedRoute
 
   ) {
 
     this.form = this.formBuilder.group({
 
-      nomeColaborador: [],
-      rgColaborador: [],
-      cpfColaborador: [],
-      chavePix: []
+      id: [''],
+      nomeColaborador: [''],
+      rgColaborador: [''],
+      cpfColaborador: [''],
+      chavePix: ['']
     });
+
+  }
+
+  ngOnInit(): void {
+    const colaborador: Colaborador = this.router.snapshot.data['colaborador'];
+    if (colaborador) {
+      this.form.setValue({
+        id: colaborador.id,
+        nomeColaborador: colaborador.nomeColaborador,
+        rgColaborador: colaborador.rgColaborador,
+        cpfColaborador: colaborador.cpfColaborador,
+        chavePix: colaborador.chavePix,
+      })
+
+    }
 
   }
 
@@ -64,10 +83,6 @@ export class ColaboradoresFormComponent implements OnInit {
 
   onCancel() {
     this.location.back();
-  }
-
-  ngOnInit(): void {
-
   }
 
 }

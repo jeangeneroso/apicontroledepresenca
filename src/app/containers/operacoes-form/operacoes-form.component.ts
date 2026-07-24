@@ -1,9 +1,11 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { OperacoesService } from '@services/operacoes.service';
+import { ActivatedRoute } from '@angular/router';
+import { Operacao } from '../../models/operacao.model';
 
 @Component({
   selector: 'app-operacoes-form',
@@ -18,35 +20,37 @@ import { OperacoesService } from '@services/operacoes.service';
 export class OperacoesFormComponent implements OnInit {
 
    form = this.formBuilder.group({
-    id: [0],
+    id: [''],
     nomeOperacao: [''],
   });
 
   constructor(
-    private formBuilder: NonNullableFormBuilder,
+    private formBuilder: FormBuilder,
     private service: OperacoesService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private router: ActivatedRoute
 
   ) { }
 
   ngOnInit(): void {
-
-  }
-
-  onSubmit(): void {
-    if (this.form.invalid) {
-      return;
+    const operacao: Operacao = this.router.snapshot.data['operacao'];
+    if (operacao) {
+      this.form.setValue({
+        id: String(operacao.id ?? ''), // Converte o ID para string para o TypeScript não reclamar
+        nomeOperacao: operacao.nomeOperacao,
+      });
     }
-
-    this.service.save(this.form.getRawValue()).subscribe({
-      next: () => {
-        this.onSucess();
-      },
-      error: () => this.onError()
-    });
   }
 
+ onSubmit(): void {
+  this.service.save(this.form.getRawValue() as Operacao).subscribe({
+    next: (operacao) => {
+      this.onSucess();
+    },
+    error: (error) => this.onError()
+  });
+}
   private onSucess(): void {
     this.snackBar.open(' Operacao cadastrada com sucesso! ', ' Fechar ', {
       duration: 2500
@@ -65,4 +69,3 @@ export class OperacoesFormComponent implements OnInit {
     this.location.back();
   }
 }
-

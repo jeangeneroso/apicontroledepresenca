@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LideresService } from '@services/lideres.service';
+import { ActivatedRoute } from '@angular/router';
+import { Lider } from '../../models/lider.model';
 
 @Component({
   selector: 'app-lideres-form',
@@ -25,12 +27,14 @@ export class LideresFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private service: LideresService,
     private snackBar: MatSnackBar,
-    private location: Location
+    private location: Location,
+    private router: ActivatedRoute
 
   ) {
 
     this.form = this.formBuilder.group({
 
+      id: [''],
       nomeLider: [],
       rgLider: [],
       cpfLider: [],
@@ -38,20 +42,35 @@ export class LideresFormComponent implements OnInit {
     });
   }
 
-    onSubmit() {
-      this.service.save(this.form.value).subscribe({
-        next: (lider) => {
-          this.onSucess();
-        },
-        error: (error) => this.onError()
-      });
+  ngOnInit(): void {
+    const lider: Lider = this.router.snapshot.data['lider'];
+    if (lider) {
+      this.form.setValue({
+        id: lider.id,
+        nomeLider: lider.nomeLider,
+        rgLider: lider.rgLider,
+        cpfLider: lider.cpfLider,
+        chavePix: lider.chavePix,
+
+      })
     }
+
+  }
+
+  onSubmit() {
+    this.service.save(this.form.value).subscribe({
+      next: (lider) => {
+        this.onSucess();
+      },
+      error: (error) => this.onError()
+    });
+  }
 
   private onSucess() {
     this.snackBar.open(' Lider cadastrado com sucesso! ', ' Fechar ', {
       duration: 2500
     });
-     this.onCancel();
+    this.onCancel();
   }
 
   private onError() {
@@ -63,10 +82,6 @@ export class LideresFormComponent implements OnInit {
 
   onCancel() {
     this.location.back();
-  }
-
-  ngOnInit(): void {
-
   }
 
 }
