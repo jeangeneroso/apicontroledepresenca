@@ -25,18 +25,22 @@ export class OperacoesService {
   }
 
   save(operacao: Operacao): Observable<Operacao> {
-    if(operacao.id){
+    if (operacao.id) {
       return this.update(operacao)
     }
 
-     return this.created(operacao)
+    return this.created(operacao)
   }
 
-  private created(operacao: Operacao){
+  private created(operacao: Operacao) {
     return this.httpClient.post<Operacao>(this.API, operacao).pipe((first()));
   }
 
-  private update(operacao: Operacao){
-       return this.httpClient.put<Operacao>(`${this.API}/${operacao.id}`, operacao).pipe((first()));
-    }
+  private update(operacao: Operacao) {
+    return this.httpClient.put<Operacao>(`${this.API}/${operacao.id}`, operacao).pipe((first()));
+  }
+
+  delete(id: string | number) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe((first()));
+  }
 }

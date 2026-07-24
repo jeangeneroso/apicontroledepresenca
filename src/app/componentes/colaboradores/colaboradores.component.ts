@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../compartilhado/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompartilhadoListComponent } from '../../compartilhado/compartilhado-list/compartilhado-list.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class ColaboradoresComponent implements OnInit {
     public  dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar,
   
   ) {
 
@@ -56,9 +58,32 @@ export class ColaboradoresComponent implements OnInit {
      this.router.navigate(['edit', colaborador.id], { relativeTo: this.route });
   }
 
-  delete(colaborador: Colaborador) {
-    console.log('Excluindo o colaborador:', colaborador);
+  refresh() {
+    this.colaboradores$ = this.colaboradoresService.list();
   }
+
+  delete(colaborador: Colaborador) {
+  console.log('Excluindo o colaborador:', colaborador);
+  
+  this.colaboradoresService.delete(colaborador.id!).subscribe({
+    next: () => {
+      this.refresh();
+      this.snackBar.open('Colaborador excluído com sucesso!', 'Fechar', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    },
+    error: (err) => {
+      console.error('Erro ao excluir:', err);
+      this.snackBar.open('Erro ao excluir colaborador.', 'Fechar', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    }
+  });
+}
 
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
