@@ -29,7 +29,7 @@ export class LideresService {
   }
 
   save(lider: Lider): Observable<Lider> {
-    if(lider.id){
+    if (lider.id) {
       return this.update(lider)
     }
 
@@ -42,6 +42,10 @@ export class LideresService {
 
   private update(lider: Lider) {
     return this.httpClient.put<Lider>(`${this.API}/${lider.id}`, lider).pipe((first()));
+  }
+
+  delete(id: string | number) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe((first()));
   }
 
 }

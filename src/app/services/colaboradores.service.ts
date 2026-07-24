@@ -28,19 +28,23 @@ export class ColaboradoresService {
   }
 
   save(colaborador: Colaborador): Observable<Colaborador> {
-    if(colaborador.id){
-       return this.update(colaborador);
+    if (colaborador.id) {
+      return this.update(colaborador);
     }
-    
-   return this.created(colaborador);
+
+    return this.created(colaborador);
   }
 
-  private created(colaborador: Colaborador){
-     return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
+  private created(colaborador: Colaborador) {
+    return this.httpClient.post<Colaborador>(this.API, colaborador).pipe((first()));
   }
 
-   private update(colaborador: Colaborador){
-     return this.httpClient.put<Colaborador>(`${this.API}/${colaborador.id}`, colaborador).pipe((first()));
+  private update(colaborador: Colaborador) {
+    return this.httpClient.put<Colaborador>(`${this.API}/${colaborador.id}`, colaborador).pipe((first()));
+  }
+
+  delete(id: string | number) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe((first()));
   }
 
 
