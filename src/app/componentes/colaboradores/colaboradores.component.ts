@@ -50,6 +50,9 @@ export class ColaboradoresComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+  }
+
   incluir() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
@@ -89,9 +92,6 @@ export class ColaboradoresComponent implements OnInit {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
-  }
-
-  ngOnInit(): void {
   }
 
   carregarColaboradores() {

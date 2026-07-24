@@ -41,6 +41,6 @@ export class OperacoesService {
   }
 
   delete(id: string | number) {
-    return this.httpClient.delete(`${this.API}/${id}`).pipe((first()));
+    return this.httpClient.delete(`${this.API}/${id}`, { responseType: 'text' }).pipe((first()));
   }
 }

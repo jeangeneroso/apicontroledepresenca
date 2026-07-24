@@ -31,7 +31,7 @@ export class OperacoesComponent {
 
   constructor(
     private operacoesService: OperacoesService,
-    public  dialog: MatDialog,
+    public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
     private location: Location,
@@ -52,6 +52,9 @@ export class OperacoesComponent {
 
   }
 
+  ngOnInit(): void {
+  }
+
   incluir() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
@@ -60,41 +63,38 @@ export class OperacoesComponent {
     this.router.navigate(['edit', operacao.id], { relativeTo: this.route });
   }
 
-  
+
   refresh() {
     this.operacoes$ = this.operacoesService.list();
   }
 
-   delete(operacao: Operacao) {
-  console.log('Excluindo o operacao:', operacao);
-  
-  this.operacoesService.delete(operacao.id!).subscribe({
-    next: () => {
-      this.refresh();
-      this.snackBar.open('Operacao excluído com sucesso!', 'Fechar', {
-        duration: 2500,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    },
-    error: (err) => {
-      console.error('Erro ao excluir:', err);
-      this.snackBar.open('Erro ao excluir.', 'Fechar', {
-        duration: 2500,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    }
-  });
-}
+  delete(operacao: Operacao) {
+    console.log('Excluindo o operacao:', operacao);
+
+    this.operacoesService.delete(operacao.id!).subscribe({
+      next: () => {
+        this.refresh();
+        this.snackBar.open('Operacao excluído com sucesso!', 'Fechar', {
+          duration: 2500,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao Operação excluir:', err);
+        this.snackBar.open('Erro ao excluir.', 'Fechar', {
+          duration: 2500,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    });
+  }
 
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
-  }
-
-  ngOnInit(): void {
   }
 
   carregarOperacoes() {

@@ -58,6 +58,9 @@ export class LideresComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+  }
+
   incluir() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
@@ -67,39 +70,36 @@ export class LideresComponent implements OnInit {
   }
 
   refresh() {
-    this.lideres$ = this. lideresService.list();
+    this.lideres$ = this.lideresService.list();
   }
 
   delete(lider: Lider) {
-  console.log('Excluindo o lider:', lider);
-  
-  this.lideresService.delete(lider.id!).subscribe({
-    next: () => {
-      this.refresh();
-      this.snackBar.open('Lider excluído com sucesso!', 'Fechar', {
-        duration: 2500,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    },
-    error: (err) => {
-      console.error('Erro ao excluir:', err);
-      this.snackBar.open('Erro ao excluir.', 'Fechar', {
-        duration: 2500,
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      });
-    }
-  });
-}
+    console.log('Excluindo o lider:', lider);
+
+    this.lideresService.delete(lider.id!).subscribe({
+      next: () => {
+        this.refresh();
+        this.snackBar.open('Lider excluído com sucesso!', 'Fechar', {
+          duration: 2500,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      },
+      error: (err) => {
+        console.error('Erro ao Lider excluir:', err);
+        this.snackBar.open('Erro ao excluir.', 'Fechar', {
+          duration: 2500,
+          verticalPosition: 'top',
+          horizontalPosition: 'center'
+        });
+      }
+    });
+  }
 
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
-  }
-
-  ngOnInit(): void {
   }
 
   carregarLideres() {
