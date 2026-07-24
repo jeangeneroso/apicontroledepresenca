@@ -66,13 +66,11 @@ export class LideresComponent implements OnInit {
     this.router.navigate(['edit', lider.id], { relativeTo: this.route });
   }
 
-  
   refresh() {
     this.lideres$ = this. lideresService.list();
   }
 
-
-   delete(lider: Lider) {
+  delete(lider: Lider) {
   console.log('Excluindo o lider:', lider);
   
   this.lideresService.delete(lider.id!).subscribe({
@@ -94,7 +92,6 @@ export class LideresComponent implements OnInit {
     }
   });
 }
-
 
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {

@@ -7,6 +7,7 @@ import { catchError, Observable, of } from 'rxjs';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { ErrorDialogComponent } from '../../compartilhado/components/error-dialog/error-dialog.component';
 import { Operacao } from '../../models/operacao.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-operacoes',
@@ -30,10 +31,11 @@ export class OperacoesComponent {
 
   constructor(
     private operacoesService: OperacoesService,
-    public dialog: MatDialog,
+    public  dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private snackBar: MatSnackBar,
   ) {
 
     this.operacoes$ = this.operacoesService.list().pipe(
@@ -58,9 +60,33 @@ export class OperacoesComponent {
     this.router.navigate(['edit', operacao.id], { relativeTo: this.route });
   }
 
-  delete(operacao: Operacao) {
-    console.log('Excluindo a operacao:', operacao);
+  
+  refresh() {
+    this.operacoes$ = this.operacoesService.list();
   }
+
+   delete(operacao: Operacao) {
+  console.log('Excluindo o operacao:', operacao);
+  
+  this.operacoesService.delete(operacao.id!).subscribe({
+    next: () => {
+      this.refresh();
+      this.snackBar.open('Operacao excluído com sucesso!', 'Fechar', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    },
+    error: (err) => {
+      console.error('Erro ao excluir:', err);
+      this.snackBar.open('Erro ao excluir.', 'Fechar', {
+        duration: 2500,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+      });
+    }
+  });
+}
 
   openError(errorMsg: string) {
     this.dialog.open(ErrorDialogComponent, {
