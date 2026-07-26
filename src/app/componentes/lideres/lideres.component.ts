@@ -10,6 +10,7 @@ import { ErrorDialogComponent } from '../../compartilhado/components/error-dialo
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompartilhadoListComponent } from '../../compartilhado/compartilhado-list/compartilhado-list.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationexclusionDialogComponent } from '../../compartilhado/components/confirmationexclusion-dialog/confirmationexclusion-dialog.component';
 
 
 @Component({
@@ -73,36 +74,44 @@ export class LideresComponent implements OnInit {
     this.lideres$ = this.lideresService.list();
   }
 
-  delete(lider: Lider) {
+  delete(lider: Lider): void {
     console.log('Excluindo o lider:', lider);
 
-    this.lideresService.delete(lider.id!).subscribe({
-      next: () => {
-        this.refresh();
-        this.snackBar.open('Lider excluído com sucesso!', 'Fechar', {
-          duration: 2500,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
-      },
-      error: (err) => {
-        console.error('Erro ao Lider excluir:', err);
-        this.snackBar.open('Erro ao excluir.', 'Fechar', {
-          duration: 2500,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
+    const dialogRef = this.dialog.open(ConfirmationexclusionDialogComponent, {
+      data: `Tem certeza que deseja excluir o lider "${lider.nomeLider}"?`,
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.lideresService.delete(lider.id!).subscribe({
+          next: () => {
+            this.refresh();
+            this.snackBar.open('Lider excluído com sucesso!', 'Fechar', {
+              duration: 2500,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          },
+          error: (err) => {
+            console.error('Erro ao excluir:', err);
+            this.snackBar.open('Erro ao excluir o lider.', 'Fechar', {
+              duration: 2500,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          }
         });
       }
     });
   }
 
-  openError(errorMsg: string) {
+  openError(errorMsg: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
   }
 
-  carregarLideres() {
+  carregarLideres(): void {
     console.log("Buscando dados no Java...");
   }
 }

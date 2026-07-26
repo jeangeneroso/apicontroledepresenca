@@ -81,7 +81,7 @@ export class ColaboradoresComponent implements OnInit {
           },
           error: (err) => {
             console.error('Erro ao excluir:', err);
-            this.snackBar.open('Erro ao excluir colaborador.', 'Fechar', {
+            this.snackBar.open('Erro ao excluir o colaborador.', 'Fechar', {
               duration: 2500,
               verticalPosition: 'top',
               horizontalPosition: 'center'

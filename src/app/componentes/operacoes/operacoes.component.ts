@@ -82,7 +82,7 @@ export class OperacoesComponent {
       },
       error: (err) => {
         console.error('Erro ao Operação excluir:', err);
-        this.snackBar.open('Erro ao excluir.', 'Fechar', {
+        this.snackBar.open('Erro ao excluir a operação.', 'Fechar', {
           duration: 2500,
           verticalPosition: 'top',
           horizontalPosition: 'center'
