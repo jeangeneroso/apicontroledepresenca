@@ -1,4 +1,4 @@
-
+/* 
 import { Component, inject, OnInit } from '@angular/core';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { CommonModule } from '@angular/common';
@@ -62,3 +62,4 @@ export class ColaboradoresFormComponent implements OnInit {
     // Lógica para cancelar (ex: voltar para a tela anterior)
   }
 }
+ */

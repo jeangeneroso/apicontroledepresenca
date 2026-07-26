@@ -11,25 +11,31 @@
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> Nome do Colaborador </mat-label>
             <input matInput placeholder=" Nome do Colaborador " formControlName="nomeColaborador">
+            <mat-error *ngIf="form.get('nomeColaborador')?.invalid">{{getErrorMessage(formColaborador)}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> RG do Colaborador </mat-label>
             <input matInput placeholder=" RG do Colaborador " formControlName="rgColaborador">
+              <mat-error *ngIf="form.get('rgColaborador')?.invalid">{{getErrorMessage(formColaborador)}}
+
+              </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> CPF do Colaborador </mat-label>
             <input matInput placeholder=" CPF do Colaborador " formControlName="cpfColaborador">
+            <mat-error *ngIf="form.get('cpfColaborador')?.invalid">{{getErrorMessage(formColaborador)}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> Chave PIX </mat-label>
             <input matInput placeholder=" Chave PIX " formControlName="chavePix">
+            <mat-error *ngIf="form.get('chavePix')?.invalid">{{getErrorMessage(formColaborador)}}</mat-error>
         </mat-form-field>
 
         <mat-card-actions>
-            <button mat-raised-button type="button" color="primary" (click)="onSubmit()"> Salvar </button>
+            <button mat-raised-button type="button" color="primary" (click)="onSubmit()" [disabled]="form.invalid"> Salvar </button>
             <button mat-raised-button (click)="onCancel()"> Cancelar </button>
         </mat-card-actions>
 

@@ -10,6 +10,7 @@ import { Operacao } from '../../models/operacao.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConfirmationexclusionDialogComponent } from '../../compartilhado/components/confirmationexclusion-dialog/confirmationexclusion-dialog.component';
 
+
 @Component({
   selector: 'app-operacoes',
   imports: [

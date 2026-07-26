@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ColaboradoresService } from '@services/colaboradores.service';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
@@ -35,10 +35,16 @@ export class ColaboradoresFormComponent implements OnInit {
     this.form = this.formBuilder.group({
 
       id: [''],
-      nomeColaborador: [''],
-      rgColaborador: [''],
-      cpfColaborador: [''],
-      chavePix: ['']
+      nomeColaborador: ['',
+        [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(75)]],
+      rgColaborador: ['', [Validators.required]],
+      cpfColaborador: ['', [Validators.required]],
+      chavePix: ['',
+        [Validators.required,
+        Validators.minLength(7),
+        Validators.maxLength(30)]]
     });
 
   }
@@ -83,6 +89,27 @@ export class ColaboradoresFormComponent implements OnInit {
 
   onCancel() {
     this.location.back();
+  }
+
+  getErrorMessage(string: any) {
+    const field = this.form.get(string);
+
+    if (field?.hasError('required')) {
+      return 'Campo Obrigatario';
+    }
+
+    if (field?.hasError('minLength')) {
+      const requiredLength: number = field.errors ? field.errors['minLength']['requiredLength'] : 3;
+      return ` Tamanho minimo dos caracteres precisa ser $ {requiredLength} caracteres`;
+    }
+
+    if (field?.hasError('maxLength')) {
+      const requiredLength: number = field.errors ? field.errors['maxLength']['requiredLength'] : 3;
+      return ` Tamanho maximo dos caracteres precisa ser $ {requiredLength} caracteres`;
+    }
+
+    return 'Campo invalido';
+
   }
 
 }

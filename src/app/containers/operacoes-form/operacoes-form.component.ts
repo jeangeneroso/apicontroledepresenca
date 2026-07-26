@@ -1,6 +1,6 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { OperacoesService } from '@services/operacoes.service';
@@ -19,9 +19,12 @@ import { Operacao } from '../../models/operacao.model';
 })
 export class OperacoesFormComponent implements OnInit {
 
-   form = this.formBuilder.group({
+  form = this.formBuilder.group({
     id: [''],
-    nomeOperacao: [''],
+    nomeOperacao: ['',
+      [Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(75)]],
   });
 
   constructor(
@@ -43,14 +46,14 @@ export class OperacoesFormComponent implements OnInit {
     }
   }
 
- onSubmit(): void {
-  this.service.save(this.form.getRawValue() as Operacao).subscribe({
-    next: (operacao) => {
-      this.onSucess();
-    },
-    error: (error) => this.onError()
-  });
-}
+  onSubmit(): void {
+    this.service.save(this.form.getRawValue() as Operacao).subscribe({
+      next: (operacao) => {
+        this.onSucess();
+      },
+      error: (error) => this.onError()
+    });
+  }
   private onSucess(): void {
     this.snackBar.open(' Operacao cadastrada com sucesso! ', ' Fechar ', {
       duration: 2500
@@ -68,4 +71,26 @@ export class OperacoesFormComponent implements OnInit {
   onCancel(): void {
     this.location.back();
   }
+
+  getErrorMessage(string: any) {
+    const field = this.form.get(string);
+
+    if (field?.hasError('required')) {
+      return 'Campo Obrigatario';
+    }
+
+    if (field?.hasError('minLength')) {
+      const requiredLength: number = field.errors ? field.errors['minLength']['requiredLength'] : 3;
+      return ` Tamanho minimo dos caracteres precisa ser $ {requiredLength} caracteres`;
+    }
+
+    if (field?.hasError('maxLength')) {
+      const requiredLength: number = field.errors ? field.errors['maxLength']['requiredLength'] : 3;
+      return ` Tamanho maximo dos caracteres precisa ser $ {requiredLength} caracteres`;
+    }
+
+    return 'Campo invalido';
+
+  }
+
 }

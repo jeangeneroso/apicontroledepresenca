@@ -11,21 +11,25 @@
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> Nome do Lider </mat-label>
             <input matInput placeholder=" Nome do Lider " formControlName="nomeLider">
+            <mat-error *ngIf="form.get('nomeLider')?.invalid">{{getErrorMessage(formLider)}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> RG do Lider </mat-label>
             <input matInput placeholder=" RG do Lider " formControlName="rgLider">
+            <mat-error *ngIf="form.get('rgLider')?.invalid">{{getErrorMessage(formLider)}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> CPF do Lider </mat-label>
             <input matInput placeholder=" CPF do Lider " formControlName="cpfLider">
+            <mat-error *ngIf="form.get('cpfLider')?.invalid">{{getErrorMessage(formLider)}}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">
             <mat-label> Chave PIX </mat-label>
             <input matInput placeholder=" Chave PIX " formControlName="chavePix">
+            <mat-error *ngIf="form.get('chavePix')?.invalid">{{getErrorMessage(formLider)}}</mat-error>
         </mat-form-field>
 
         <mat-card-actions>
