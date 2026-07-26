@@ -1,0 +1,5 @@
+mat-dialog-actions {
+  display: flex;
+  gap: 30px;       
+  margin-top: 24px; 
+}

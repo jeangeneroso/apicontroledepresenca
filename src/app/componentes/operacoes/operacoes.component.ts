@@ -8,6 +8,7 @@ import { AppMarterialModule } from '../../compartilhado/app-material/app-materia
 import { ErrorDialogComponent } from '../../compartilhado/components/error-dialog/error-dialog.component';
 import { Operacao } from '../../models/operacao.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmationexclusionDialogComponent } from '../../compartilhado/components/confirmationexclusion-dialog/confirmationexclusion-dialog.component';
 
 @Component({
   selector: 'app-operacoes',
@@ -68,38 +69,44 @@ export class OperacoesComponent {
     this.operacoes$ = this.operacoesService.list();
   }
 
-  delete(operacao: Operacao) {
+ delete(operacao: Operacao): void {
     console.log('Excluindo o operacao:', operacao);
 
-    this.operacoesService.delete(operacao.id!).subscribe({
-      next: () => {
-        this.refresh();
-        this.snackBar.open('Operacao excluído com sucesso!', 'Fechar', {
-          duration: 2500,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
-      },
-      error: (err) => {
-        console.error('Erro ao Operação excluir:', err);
-        this.snackBar.open('Erro ao excluir a operação.', 'Fechar', {
-          duration: 2500,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
+    const dialogRef = this.dialog.open(ConfirmationexclusionDialogComponent, {
+      data: `Tem certeza que deseja excluir a operação "${operacao.nomeOperacao}"?`,
+    });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if (result) {
+        this.operacoesService.delete(operacao.id!).subscribe({
+          next: () => {
+            this.refresh();
+            this.snackBar.open('Operação excluída com sucesso!', 'Fechar', {
+              duration: 2500,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          },
+          error: (err) => {
+            console.error('Erro ao excluir:', err);
+            this.snackBar.open('Erro ao excluir a Operação.', 'Fechar', {
+              duration: 2500,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          }
         });
       }
     });
   }
 
-  openError(errorMsg: string) {
+  openError(errorMsg: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
   }
 
-  carregarOperacoes() {
+  carregaroperacoes(): void {
     console.log("Buscando dados no Java...");
   }
-
-
 }
