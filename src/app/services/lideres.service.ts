@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Lider } from '../models/lider.model';
 import { HttpClient } from '@angular/common/http';
 import { first, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { first, Observable, tap } from 'rxjs';
 
 export class LideresService {
 
-  private readonly API = 'https://controledepresenca-lzwu.onrender.com/lideres'
+  private readonly API = `${environment.apiUrl}/lideres`;
 
   constructor(private httpClient: HttpClient) { }
 
