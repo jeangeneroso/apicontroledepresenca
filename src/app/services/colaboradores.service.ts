@@ -9,7 +9,7 @@ import { first, Observable, tap } from 'rxjs';
 
 export class ColaboradoresService {
 
-  private readonly API = '/api/colaboradores'
+  private readonly API = 'https://controledepresenca-lzwu.onrender.com/colaboradores'
 
   constructor(private httpClient: HttpClient) { }
 

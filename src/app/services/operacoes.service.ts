@@ -8,7 +8,7 @@ import { first, Observable, tap } from 'rxjs';
 })
 export class OperacoesService {
 
-  private readonly API = '/api/operacoes'
+  private readonly API = 'https://controledepresenca-lzwu.onrender.com/operacoes'
 
   constructor(private httpClient: HttpClient) { }
 
