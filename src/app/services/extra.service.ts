@@ -7,7 +7,7 @@ import { first, Observable } from 'rxjs';
 })
 export class ExtraService {
 
-    private readonly API = 'http://localhost:8080/api/extras';
+    private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/extras';
 
     constructor(private http: HttpClient) { }
 

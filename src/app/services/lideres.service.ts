@@ -9,7 +9,7 @@ import { first, Observable, tap } from 'rxjs';
 
 export class LideresService {
 
-  private readonly API = '/api/lideres'
+  private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/lideres'
 
   constructor(private httpClient: HttpClient) { }
 

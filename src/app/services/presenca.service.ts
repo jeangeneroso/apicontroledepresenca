@@ -9,7 +9,7 @@ import { Lider } from '../models/lider.model';
 })
 export class PresencaService {
 
-  private readonly API = 'http://localhost:8080/api/presencas';
+  private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/presencas';
 
   constructor(private http: HttpClient) { }
 
