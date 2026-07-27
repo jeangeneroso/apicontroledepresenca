@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Operacao } from '../models/operacao.model';
 import { HttpClient } from '@angular/common/http';
 import { first, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OperacoesService {
 
-  private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/operacoes'
+  private readonly API = `${environment.apiUrl}/operacoes`;
 
   constructor(private httpClient: HttpClient) { }
 

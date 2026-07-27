@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { first, Observable } from 'rxjs';
-import { Colaborador } from '../models/colaborador.model';
-import { Lider } from '../models/lider.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PresencaService {
 
-  private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/presencas';
+  private readonly API = `${environment.apiUrl}/presencas`;
 
   constructor(private http: HttpClient) { }
 

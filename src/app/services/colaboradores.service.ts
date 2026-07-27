@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Colaborador } from '../models/colaborador.model';
 import { HttpClient } from '@angular/common/http';
 import { first, Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { first, Observable, tap } from 'rxjs';
 
 export class ColaboradoresService {
 
-  private readonly API = 'https://controledepresenca-lzwu.onrender.com/api/colaboradores'
+  private readonly API = `${environment.apiUrl}/colaboradores`;
 
   constructor(private httpClient: HttpClient) { }
 
