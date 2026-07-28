@@ -98,13 +98,13 @@ export class ColaboradoresFormComponent implements OnInit {
       return 'Campo Obrigatario';
     }
 
-    if (field?.hasError('minLength')) {
-      const requiredLength: number = field.errors ? field.errors['minLength']['requiredLength'] : 3;
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 3;
       return ` Tamanho minimo dos caracteres precisa ser $ {requiredLength} caracteres`;
     }
 
-    if (field?.hasError('maxLength')) {
-      const requiredLength: number = field.errors ? field.errors['maxLength']['requiredLength'] : 3;
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 3;
       return ` Tamanho maximo dos caracteres precisa ser $ {requiredLength} caracteres`;
     }
 
