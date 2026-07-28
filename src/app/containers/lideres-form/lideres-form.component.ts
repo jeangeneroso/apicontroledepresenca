@@ -35,13 +35,13 @@ export class LideresFormComponent implements OnInit {
     this.form = this.formBuilder.group({
 
       id: [''],
-      nomeLider: [
+      nomeLider: ['',
         [Validators.required,
         Validators.minLength(3),
         Validators.maxLength(75)]],
-      rgLider: [['', [Validators.required]],],
-      cpfLider: [['', [Validators.required]],],
-      chavePix: [['', [Validators.required]],]
+      rgLider: ['',['', [Validators.required]],],
+      cpfLider: ['',['', [Validators.required]],],
+      chavePix: ['',['', [Validators.required]],]
     });
   }
 
