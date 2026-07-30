@@ -5,6 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { Router } from '@angular/router';
 import { ExtraService } from '@services/extra.service';
+import { Colaborador } from '../../models/colaborador.model';
+import { Operacao } from '../../models/operacao.model';
+import { Lider } from '../../models/lider.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-extra',
@@ -24,9 +28,9 @@ export class ExtraComponent implements OnInit {
   formLider!: FormGroup;
 
   // Listas que vão alimentar os <select> no HTML
-  listaDeColaboradores: any[] = [];
-  listaDeOperacoes: any[] = [];
-  listaDeLideres: any[] = [];
+    listaDeColaboradores: Colaborador[] = [];
+    listaDeOperacoes: Operacao[] = [];
+    listaDeLideres: (Lider | Colaborador)[] = [];
   listaDeHoras: any[] = [];
 
   constructor(
@@ -56,14 +60,29 @@ export class ExtraComponent implements OnInit {
 
   }
 
-  carregarDadosIniciais() {
 
-    this.listaDeColaboradores = [{ id: 1, nome: 'João Silva' }, { id: 2, nome: 'Maria Souza' }];
-    this.listaDeOperacoes = [{ id: 1, nome: 'Operação Logística' }, { id: 2, nome: 'Operação Produção' }];
-    this.listaDeLideres = [{ id: 1, nome: 'Carlos Gerente' }, { id: 2, nome: 'Ana Supervisora' }];
-    this.listaDeHoras = [{ id: 1, nome: '1 hora' }, { id: 2, nome: '2 horas' }, { id: 3, nome: '3 horas' }, { id: 4, nome: '4 horas' }, { id: 5, nome: '5 horas' }];
-
-  }
+   carregarDadosIniciais(): void {
+      // Busca todas as listas em paralelo antes de liberar o form
+      forkJoin({
+        colaboradores: this.extraService.buscarColaboradores(),
+        operacoes: this.extraService.buscarOperacoes(),
+        lideres: this.extraService.buscarLideres()
+      }).subscribe({
+        next: (dados) => {
+          this.listaDeColaboradores = dados.colaboradores;
+          this.listaDeOperacoes = dados.operacoes;
+          this.listaDeLideres = [...dados.lideres, ...dados.colaboradores];
+          this.listaDeHoras = [{ id: 1, nome: '1 hora' }, { id: 2, nome: '2 horas' }, { id: 3, nome: '3 horas' }, { id: 4, nome: '4 horas' }, { id: 5, nome: '5 horas' }];
+  
+          console.log('Líderes + Colaboradores unificados:', this.listaDeLideres);
+          console.log('Operações carregadas no componente:', this.listaDeOperacoes);
+        },
+        error: (err) => {
+          console.error('Erro ao carregar listas iniciais:', err);
+          this.snackBar.open('Erro ao carregar dados do formulário', 'Fechar', { duration: 3000 });
+        }
+      });
+    }
 
   trocarAba(aba: string) {
     this.abaAtiva = aba;
