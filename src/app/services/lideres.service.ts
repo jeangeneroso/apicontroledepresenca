@@ -16,7 +16,6 @@ export class LideresService {
 
   list() {
 
-
     return this.httpClient.get<Lider[]>(this.API)
       .pipe(
         first(),
