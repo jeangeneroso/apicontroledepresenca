@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { first, Observable } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Colaborador } from '../models/colaborador.model';
+import { Lider } from '../models/lider.model';
+import { Operacao } from '../models/operacao.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +31,47 @@ export class PresencaService {
     return this.http.post<any>(`${this.API}/lider`, lider).pipe(first());
   }
 
+  /*  buscarLideres() {
+   return this.http.get<Lider[]>(this.API)
+         .pipe(
+           first(),
+           tap((lideres: any) => console.log(lideres))
+         );
+ }
+ buscarOperacoes() {
+    return this.http.get<Operacao[]>(this.API)
+         .pipe(
+           first(),
+           tap(operacoes => console.log(operacoes))
+         );
+ }
+ buscarColaboradores() {
+  return this.http.get<Colaborador[]>(this.API)
+         .pipe(
+           first(),
+           tap(colaboradores => console.log(colaboradores))
+         );
+ } */
+
+  buscarLideres() {
+    return this.http.get<Lider[]>(`${environment.apiUrl}/lideres`).pipe(
+      first(),
+      tap(lideres => console.log('Líderes:', lideres))
+    );
+  }
+
+  buscarOperacoes() {
+    return this.http.get<Operacao[]>(`${environment.apiUrl}/operacoes`).pipe(
+      first(),
+      tap(operacoes => console.log('Operações:', operacoes))
+    );
+  }
+
+  buscarColaboradores() {
+    return this.http.get<Colaborador[]>(`${environment.apiUrl}/colaboradores`).pipe(
+      first(),
+      tap(colaboradores => console.log('Colaboradores:', colaboradores))
+    );
+  }
 
 }

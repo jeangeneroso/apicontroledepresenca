@@ -5,6 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PresencaService } from '../../services/presenca.service';
 import { AppMarterialModule } from '../../compartilhado/app-material/app-material.module';
 import { Router } from '@angular/router';
+import { Colaborador } from '../../models/colaborador.model';
+import { Lider } from '../../models/lider.model';
+import { Operacao } from '../../models/operacao.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-presenca',
@@ -25,9 +29,9 @@ export class PresencaComponent implements OnInit {
   formLider!: FormGroup;
 
   // Listas que vão alimentar os <select> no HTML
-  listaDeColaboradores: any[] = [];
-  listaDeOperacoes: any[] = [];
-  listaDeLideres: any[] = [];
+  listaDeColaboradores: Colaborador[] = [];
+  listaDeOperacoes: Operacao[] = [];
+  listaDeLideres: (Lider | Colaborador)[] = [];
 
   constructor(
     private presencaService: PresencaService,
@@ -38,13 +42,14 @@ export class PresencaComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Inicializando o formulário do Colaborador
     this.formColaborador = this.fb.group({
       data: ['', Validators.required],
       colaborador: ['', Validators.required],
       operacao: ['', Validators.required]
     });
 
-    // 2. Inicializando o formulário do Líder
+    // Inicializando o formulário do Líder
     this.formLider = this.fb.group({
       data: ['', Validators.required],
       lider: ['', Validators.required],   // Receberá o objeto/ID do líder selecionado
@@ -55,19 +60,44 @@ export class PresencaComponent implements OnInit {
     this.carregarDadosIniciais();
   }
 
-  // Método fictício (você deve implementar os GETs no seu presencaService)
-  carregarDadosIniciais() {
-    // Exemplo de como você vai buscar os dados do banco para preencher os <selects>
-    /* this.presencaService.buscarColaboradores().subscribe(dados => this.listaDeColaboradores = dados);
-    this.presencaService.buscarOperacoes().subscribe(dados => this.listaDeOperacoes = dados);
-    this.presencaService.buscarLideres().subscribe(dados => this.listaDeLideres = dados);
-    */
 
-    // Apenas para testes visuais enquanto não puxa do banco, você pode mockar assim:
-    this.listaDeColaboradores = [{ id: 1, nome: 'João Silva' }, { id: 2, nome: 'Maria Souza' }];
-    this.listaDeOperacoes = [{ id: 1, nome: 'Operação Logística' }, { id: 2, nome: 'Operação Produção' }];
-    this.listaDeLideres = [{ id: 1, nome: 'Carlos Gerente' }, { id: 2, nome: 'Ana Supervisora' }];
+  /*   carregarDadosIniciais() {
+    this.presencaService.buscarColaboradores().subscribe({
+      next: (dados) => this.listaDeColaboradores = dados,
+      error: (err) => console.error('Erro ao buscar colaboradores:', err)
+    });
+  
+    this.presencaService.buscarOperacoes().subscribe({
+      next: (dados) => this.listaDeOperacoes = dados,
+      error: (err) => console.error('Erro ao buscar operações:', err)
+    });
+  
+    this.presencaService.buscarLideres().subscribe({
+      next: (dados) => this.listaDeLideres = dados,
+      error: (err) => console.error('Erro ao buscar líderes:', err)
+    });
+  } */
 
+  carregarDadosIniciais(): void {
+    // Busca todas as listas em paralelo antes de liberar o form
+    forkJoin({
+      colaboradores: this.presencaService.buscarColaboradores(),
+      operacoes: this.presencaService.buscarOperacoes(),
+      lideres: this.presencaService.buscarLideres()
+    }).subscribe({
+      next: (dados) => {
+        this.listaDeColaboradores = dados.colaboradores;
+        this.listaDeOperacoes = dados.operacoes;
+        this.listaDeLideres = [...dados.lideres, ...dados.colaboradores];
+
+        console.log('Líderes + Colaboradores unificados:', this.listaDeLideres);
+        console.log('Operações carregadas no componente:', this.listaDeOperacoes);
+      },
+      error: (err) => {
+        console.error('Erro ao carregar listas iniciais:', err);
+        this.snackBar.open('Erro ao carregar dados do formulário', 'Fechar', { duration: 3000 });
+      }
+    });
   }
 
   trocarAba(aba: string) {
@@ -134,7 +164,7 @@ export class PresencaComponent implements OnInit {
     });
 
     if (acao === 'voltar') {
-    this.onCancel();
+      this.onCancel();
     }
   }
 

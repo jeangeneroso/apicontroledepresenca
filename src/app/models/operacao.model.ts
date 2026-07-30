@@ -1,5 +1,6 @@
 export interface Operacao {
 
     id?: number | string;
-    nomeOperacao: string
+    nomeOperacao: string;
+    nome?: string; //
 }

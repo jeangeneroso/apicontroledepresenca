@@ -42,8 +42,8 @@
       <mat-label>Operação</mat-label>
       <mat-select formControlName="operacao">
         <mat-option [value]="null">Selecione uma operação</mat-option>
-        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
-          {{ op.nome }}
+        <mat-option *ngFor="let operacao of listaDeOperacoes" [value]="operacao.id">
+        {{ operacao.nomeOperacao || operacao.nome }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formColaborador.get('operacao')?.hasError('required')">
@@ -90,7 +90,7 @@
       <mat-select formControlName="lider">
         <mat-option [value]="null">Selecione o Líder</mat-option>
         <mat-option *ngFor="let lid of listaDeLideres" [value]="lid.id">
-          {{ lid.nomeLider|| lid.nome }}
+          {{ $any(lid).nomeLider || $any(lid).nomeColaborador || $any(lid).nome }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formLider.get('lider')?.hasError('required')">
@@ -102,8 +102,8 @@
       <mat-label>Operação</mat-label>
       <mat-select formControlName="operacao">
         <mat-option [value]="null">Selecione uma operação</mat-option>
-        <mat-option *ngFor="let op of listaDeOperacoes" [value]="op.id">
-          {{ op.nome }}
+        <mat-option *ngFor="let operacao of listaDeOperacoes" [value]="operacao.id">
+          {{ operacao.nomeOperacao || operacao.nome }}
         </mat-option>
       </mat-select>
       <mat-error *ngIf="formLider.get('operacao')?.hasError('required')">
