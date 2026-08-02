@@ -1,8 +1,3 @@
----
-
-### 📄 Modelo para o repositório do ANGULAR (Front-end)
-
-```markdown
 # 📊 Controle de Diárias e Reembolsos — Interface (Front-end)
 
 Interface web desenvolvida em **Angular** para consumo da API do sistema de gestão de diárias.
