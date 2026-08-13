@@ -56,12 +56,29 @@ td.mat-mdc-cell {
   flex: 1 1 auto;
 }
 
-:host ::ng-deep td.mat-mdc-cell {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* ========================================================
+   AJUSTES ESPECÍFICOS DE COLUNAS DO ANGULAR MATERIAL
+   ======================================================== */
+
+/* 1. Impede a quebra de linha no Nome e dá mais espaço */
+.mat-column-nome,
+th.mat-column-nome,
+td.mat-column-nome {
+  white-space: nowrap !important; /* Força o nome a ficar em uma linha só */
+  min-width: 250px;               /* Define uma largura mínima confortável */
 }
 
-:host ::ng-deep .mat-column-nome {
-  max-width: 220px;
+/* 2. Puxa os botões da coluna Ações para a esquerda */
+.mat-column-acoes,
+th.mat-column-acoes,
+td.mat-column-acoes {
+  text-align: left !important;
+}
+
+/* Caso seus botões de editar/excluir estejam em container flex dentro da célula */
+td.mat-column-acoes {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-start !important; /* Joga os botões para a esquerda */
+  gap: 12px;                               /* Espaçamento entre o lápis e a lixeira */
 }
