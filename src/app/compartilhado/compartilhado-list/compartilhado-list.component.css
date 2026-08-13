@@ -55,3 +55,13 @@ td.mat-mdc-cell {
 .spacer {
   flex: 1 1 auto;
 }
+
+:host ::ng-deep td.mat-mdc-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:host ::ng-deep .mat-column-nome {
+  max-width: 220px;
+}
