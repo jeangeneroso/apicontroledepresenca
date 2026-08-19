@@ -65,3 +65,7 @@ td.mat-mdc-cell {
 :host ::ng-deep .mat-column-nome {
   max-width: 220px;
 }
+
+:host ::ng-deep td.mat-column-acoes {
+  white-space: nowrap;
+}
