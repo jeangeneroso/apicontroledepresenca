@@ -10,10 +10,10 @@
   </ng-container>
 
   <ng-container matColumnDef="nomeColaborador">
-    <mat-header-cell *matHeaderCellDef> 
+    <mat-header-cell *matHeaderCellDef>
       <span class="header-conteudo">
         Nome
-      <mat-icon>person</mat-icon>
+        <mat-icon>person</mat-icon>
       </span>
     </mat-header-cell>
     <mat-cell *matCellDef="let colaborador">
@@ -22,22 +22,29 @@
   </ng-container>
 
   <ng-container matColumnDef="rgColaborador">
-    <mat-header-cell *matHeaderCellDef> RG
-      <mat-icon>pin</mat-icon>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="header-conteudo"> RG
+        <mat-icon>pin</mat-icon>
+      </span>
     </mat-header-cell>
     <mat-cell *matCellDef="let colaborador"> {{colaborador.rgColaborador || colaborador.rgLider}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="cpfColaborador">
-    <mat-header-cell *matHeaderCellDef> CPF
-      <mat-icon>subtitles</mat-icon>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="header-conteudo"> CPF
+        <mat-icon>subtitles</mat-icon>
+      </span>
     </mat-header-cell>
     <mat-cell *matCellDef="let colaborador"> {{colaborador.cpfColaborador || colaborador.cpfLider}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="chavePix">
-    <mat-header-cell *matHeaderCellDef> Chave PIX
-      <mat-icon>key</mat-icon>
+    <mat-header-cell *matHeaderCellDef>
+      <span class="header-conteudo">
+        Chave PIX
+        <mat-icon>key</mat-icon>
+      </span>
     </mat-header-cell>
     <mat-cell *matCellDef="let colaborador"> {{colaborador.chavePix || colaborador.chavePix}} </mat-cell>
   </ng-container>
@@ -60,9 +67,3 @@
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
-
-
-
-      
-     
-

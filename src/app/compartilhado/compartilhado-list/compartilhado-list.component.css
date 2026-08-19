@@ -1,24 +1,68 @@
 mat-card {
-  display: block; /* Garante o comportamento correto do card dentro do flex */
+  display: block;
   width: 100%;
   max-width: 100%;
   margin-bottom: 20px;
   box-sizing: border-box;
-  overflow-x: auto; /* Se a tela for pequena, adiciona barra de rolagem SÓ no card, sem quebrar o menu */
+  overflow-x: auto;
 }
 
-/* Alinha o texto do cabeçalho da tabela para ficar bonito */
-mat-mdc-header-cell {
+/* Estilo dos Cabeçalhos */
+mat-header-cell, th.mat-mdc-header-cell {
   font-weight: bold;
   color: #333;
   font-size: 14px;
 }
 
-mat-mdc-cell {
-  padding: 12px 4px; 
+/* Padding e Alinhamento Global */
+mat-header-cell, mat-cell,
+th.mat-mdc-header-cell, td.mat-mdc-cell {
+  padding: 12px 16px !important;
+  text-align: left;
 }
 
-.loagind-spinner{
+/* Estrutura do Texto + Ícone */
+.header-conteudo {
+  display: inline-flex !important;
+  align-items: center;
+  width: auto !important;
+}
+
+.header-conteudo mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px !important; /* Espaçamento exato entre texto e ícone */
+  margin-right: 0 !important;
+  flex-shrink: 0;
+}
+
+/* DISTRIBUIÇÃO DAS LARGURAS DAS COLUNAS */
+:host ::ng-deep .mat-column-id {
+  max-width: 90px;
+}
+
+:host ::ng-deep .mat-column-nomeColaborador {
+  min-width: 200px;
+}
+
+:host ::ng-deep .mat-column-rgColaborador,
+:host ::ng-deep .mat-column-cpfColaborador {
+  min-width: 150px; /* Garante que RG e CPF tenham espaço sem ficarem colados */
+}
+
+:host ::ng-deep .mat-column-chavePix {
+  min-width: 180px;
+}
+
+/* Coluna de Ações alinhada à direita */
+:host ::ng-deep .mat-column-acoes {
+  justify-content: flex-end !important;
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+.loagind-spinner {
   padding: 25px;
   background: rgba(0, 0, 0, 0.15);
   display: flex;
@@ -26,46 +70,6 @@ mat-mdc-cell {
   justify-content: center;
 }
 
-/* Garante que o texto e o ícone fiquem na mesma linha e centralizados */
-/* Atualize a classe do conteúdo do cabeçalho */
-.header-conteudo {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Força o alinhamento total à esquerda */
-  gap: 8px; /* Espaço fixo entre o texto e o ícone */
-  width: 100%;
-}
-
-/* Ajuste fino nos paddings das células para alinhar cabeçalho e dados */
-th.mat-mdc-header-cell, 
-td.mat-mdc-cell {
-  padding: 12px 16px !important; /* Aumenta o padding lateral padrão para dar respiro */
-  text-align: left !important;   /* Garante que ambos comecem no mesmo ponto */
-}
-
-/* Remove qualquer margem que o ícone possa herdar e quebrar o alinhamento */
-.header-conteudo mat-icon {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  margin: 0; 
-  display: inline-block;
-}
-
 .spacer {
   flex: 1 1 auto;
-}
-
-:host ::ng-deep td.mat-mdc-cell {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-:host ::ng-deep .mat-column-nome {
-  max-width: 220px;
-}
-
-:host ::ng-deep td.mat-column-acoes {
-  white-space: nowrap;
 }
