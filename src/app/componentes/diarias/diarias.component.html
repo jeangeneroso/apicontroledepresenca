@@ -1,1 +1,105 @@
-<p>Registro das Diarias</p>
+<mat-card>
+  <mat-toolbar>
+    <span class="titulo-centralizado"> Gestão das Diárias </span>
+
+    <span class="spacer"></span>
+
+    <button matFab extended (click)="incluir()" class="botao-incluir">
+      <mat-icon>warehouse</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <ng-container *ngIf="diarias$ | async as listaDiarias; else loading">
+    <mat-table [dataSource]="listaDiarias" class="mat-elevation-z8">
+
+      <!-- Coluna ID -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            ID <mat-icon>account_box</mat-icon>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item"> {{ item.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Data -->
+      <ng-container matColumnDef="data">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            Data <mat-icon>calendar_today</mat-icon>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.dataDiaria | date: 'dd/MM/yyyy' }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Colaborador -->
+      <ng-container matColumnDef="nomeColaborador">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            Colaborador <mat-icon>person</mat-icon>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.colaborador ? item.colaborador.nome : '-' }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Líder -->
+      <ng-container matColumnDef="nomeLider">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            Líder <mat-icon>supervisor_account</mat-icon>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.lider ? item.lider.nome : '-' }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Operação -->
+      <ng-container matColumnDef="operacao">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+            Operação <mat-icon>work</mat-icon>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.operacao?.nome }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Status -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          {{ item.status }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Coluna Ações -->
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <button mat-icon-button (click)="edit(item)" class="botao-editar" title="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="delete(item)" class="botao-excluir" title="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="loading-spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+</mat-card>
