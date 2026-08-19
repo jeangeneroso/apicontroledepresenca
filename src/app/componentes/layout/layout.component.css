@@ -1,67 +1,70 @@
-/* Removido o comentário quebrado com tags HTML que travava o CSS */
-
-/* Garante que o container alinhe horizontalmente e ocupe a tela */
-div[style*="display: flex"], .layout-container {
+/* Layout Principal (Menu + Conteúdo) */
+.layout-container {
   display: flex !important;
   flex-direction: row !important;
-  min-height: calc(100vh - 64px); 
+  min-height: calc(100vh - 64px);
   align-items: stretch;
   width: 100%;
 }
 
-/* Menu Lateral */
+/* 1. ALTERADO: Aumentado de 240px para 280px */
 .menu-lateral {
   width: 240px;
-  min-width: 240px; /* Garante que o menu não esmague */
-  background-color: #f5f5f5; 
-  border-right: 1px solid #ddd;
+  min-width: 240px;
+  background-color: var(--mdc-elevation-surface, #f5f5f5);
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
   padding-top: 15px;
+  box-sizing: border-box;
 }
 
-/* Container de navegação em coluna */
 .menu-lateral nav {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 }
 
-/* Links do menu */
+/* 2. ALTERADO: Adicionado white-space: nowrap para não quebrar linha */
 .link-menu {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 12px 20px;
-  color: #333;
+  color: rgba(0, 0, 0, 0.87);
   text-decoration: none;
   font-weight: 500;
-  transition: background-color 0.2s ease;
+  white-space: nowrap; /* IMPEDE A QUEBRA DE LINHA */
+  border-radius: 0 24px 24px 0;
+  margin-right: 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .link-menu:hover {
-  background-color: #e0e0e0;
-  color: #1976d2; 
+  background-color: rgba(25, 118, 210, 0.12);
+  color: #1976d2;
 }
 
-/* Conteúdo principal ao lado do menu */
+/* Área de Conteúdo (Tabelas e Cards) */
 .conteudo-principal {
-  flex: 1 !important; /* Força a tabela a ir para o lado */
-  min-width: 0; /* Impede tabelas grandes de empurrarem o menu para baixo */
+  flex: 1 !important;
+  min-width: 0;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Complemento para a barra superior */
+/* Barra Superior (Toolbar) */
 .toolbar-principal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 18px; /* Dá um recuo elegante nas duas pontas da barra */
-  height: 48px; /* Altura padrão que casa com o seu calc(100vh - 64px) */
+  padding: 0 18px;
+  height: 48px;
 }
 
+/* Utilitários */
 .spacer {
-  flex: 1 1 auto; /* Empurra o botão Sair para o final */
+  flex: 1 1 auto;
 }
 
 .botao-sair {
   font-weight: bold;
-  /* Se quiser afastar um pouquinho mais da borda da tela: */
-  margin-right: 8px; 
+  margin-right: 8px;
 }

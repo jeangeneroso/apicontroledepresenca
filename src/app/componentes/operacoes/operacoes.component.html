@@ -22,8 +22,10 @@
       </ng-container>
 
       <ng-container matColumnDef="nomeOperacao">
-        <mat-header-cell *matHeaderCellDef> 
-          Nome da Operação <mat-icon>warehouse</mat-icon>
+        <mat-header-cell *matHeaderCellDef>
+          <span class="header-conteudo">
+          Nome da Operação <mat-icon>work</mat-icon>
+          </span>
         </mat-header-cell>
         <mat-cell *matCellDef="let operacao">
           {{ operacao.nomeOperacao || operacao.nome }}
