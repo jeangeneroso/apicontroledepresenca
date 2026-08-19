@@ -24,11 +24,11 @@ export class PresencaService {
   } */
 
   salvarPresencaColaborador(colaborador: any): Observable<any> {
-    return this.http.post<any>(`${this.API}/colaborador`, colaborador).pipe(first());
+    return this.http.post<any>(`${this.API}/presencas/colaborador`, colaborador).pipe(first());
   }
 
   salvarPresencaLider(lider: any): Observable<any> {
-    return this.http.post<any>(`${this.API}/lider`, lider).pipe(first());
+    return this.http.post<any>(`${this.API}/presencas/lider`, lider).pipe(first());
   }
 
   /*  buscarLideres() {

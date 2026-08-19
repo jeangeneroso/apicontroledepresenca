@@ -59,7 +59,7 @@ export class DiariasComponent {
   }
 
   openError(errorMsg: string) {
-    this.snackBar.open(errorMsg, 'X', {
+    this.snackBar.open(errorMsg, 'Fechar', {
       duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: 'center'
