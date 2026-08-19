@@ -5,7 +5,6 @@ import { PresencaComponent } from './presencas.component';
 const routes: Routes = [
   {path: '', component : PresencaComponent }
 
-
 ];
 
 @NgModule({
